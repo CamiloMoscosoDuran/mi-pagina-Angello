@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Carta - Pastas{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="flex-grow bg-main bg-cartas min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-50 text-white shadow-lg sticky top-0 z-50">
+        <a href="{{ url_for('cartas') }}" class="text-orange-500 hover:text-white transition-colors font-bold text-lg">← Volver a la Carta</a>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center p-8 space-y-8">
+        <h1 class="text-5xl font-cinzel text-white mb-4">Pastas</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg">
+                <img src="{{ url_for('static', filename='img/carta/spaghetti_bolognesa.png') }}" alt="Spaghetti Bolognesa" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Spaghetti Bolognesa</h3>
+                    <p>Clásica pasta con salsa de carne y tomate natural, al estilo italiano.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg">
+                <img src="{{ url_for('static', filename='img/carta/fettuccine_alfredo.png') }}" alt="Fettuccine Alfredo" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Fettuccine Alfredo</h3>
+                    <p>Pasta bañada en una cremosa salsa de queso parmesano y mantequilla.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg">
+                <img src="{{ url_for('static', filename='img/carta/lasagna.png') }}" alt="Lasagna Clásica" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Lasagna Clásica</h3>
+                    <p>Capas de pasta con carne, salsa roja y queso gratinado al horno.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

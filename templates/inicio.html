@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-inicio">
+
+    <!-- NAVBAR IGUAL AL DE RESERVA + BOTÓN DE INICIO DE SESIÓN -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='img/inicio/logo.png') }}" alt="Logo Angello">
+            </a>
+        </div>
+
+        <div class="links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            <a href="{{ url_for('promociones') }}">Promociones</a>
+            <a href="{{ url_for('reserva') }}">Reservaciones</a>
+            <a href="{{ url_for('delivery') }}">Delivery</a>
+        </div>
+
+        <div class="user-actions">
+            {% if loggedin %}
+                <span class="saludo">👋 Hola, {{ nombre }}</span>
+                <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- HERO PRINCIPAL -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='img/inicio/inicio.jpg') }}" alt="Pasta Angello">
+            </div>
+            <div class="hero-text">
+                <h1>Restaurante Angello</h1>
+                <p>Disfruta de un ambiente cálido, comida excepcional y atención personalizada.</p>
+                <div class="horarios">
+                    <h2>Horarios de Atención</h2>
+                    <p>Martes a Domingo</p>
+                    <p>2:00 p.m. - 11:00 p.m.</p>
+                </div>
+                <a href="{{ url_for('reserva') }}" class="btn-reserva">Haz tu reservación</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER IGUAL AL DE RESERVA -->
+    <footer>
+        <p>© 2025 Restaurante Angello - Todos los derechos reservados.</p>
+        <div class="sociales">
+            <a href="https://wa.me/XXXXXXXXXX" target="_blank">WhatsApp</a> |
+            <a href="https://facebook.com/tupagina" target="_blank">Facebook</a>
+        </div>
+    </footer>
+
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Bienvenido, {{ nombre }}{% endblock %}
+
+{% block extra_head %}
+<!-- Estilo específico para esta vista -->
+<style>
+  .bg-welcome {
+    background-image: url("{{ url_for('static', filename='img/suscripcion/background_suscripcion.jpg') }}");
+    background-size: cover;
+    background-position: center;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="flex-grow bg-main bg-welcome min-h-screen flex flex-col">
+
+  <!-- Barra de navegación del usuario registrado -->
+  <nav class="flex justify-between items-center p-4 bg-black bg-opacity-70 text-white shadow-xl sticky top-0 z-50">
+    <div class="flex items-center space-x-4">
+
+      <!-- Logo -->
+      <a href="{{ url_for('inicio') }}" class="flex items-center space-x-2 text-xl font-bold text-orange-400 hover:text-white transition-colors">
+        <img src="{{ url_for('static', filename='img/formulario/logo.png') }}" alt="Logo Angello" class="h-10 w-10 rounded-full border-2 border-orange-500">
+        <span>Angello</span>
+      </a>
+
+      <!-- Navegación principal -->
+      <a href="{{ url_for('inicio') }}" class="px-3 py-2 hover:text-orange-500 transition-colors hidden md:block">Inicio</a>
+      <a href="{{ url_for('cartas') }}" class="px-3 py-2 hover:text-orange-500 transition-colors hidden md:block">Nuestra Carta</a>
+      <a href="{{ url_for('historia') }}" class="px-3 py-2 hover:text-orange-500 transition-colors hidden md:block">Nuestra Historia</a>
+
+      <!-- Promociones exclusivas -->
+      <a href="{{ url_for('promociones') }}" 
+         class="px-3 py-2 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-500 transition-colors">
+        🎁 PROMOCIONES EXCLUSIVAS
+      </a>
+
+      <a href="{{ url_for('formulario') }}" class="px-3 py-2 hover:text-orange-500 transition-colors hidden md:block">Delivery / Reservar</a>
+    </div>
+
+    <!-- Estado de sesión -->
+    <div class="flex items-center space-x-4">
+      {% if loggedin %}
+        <span class="px-4 py-2 text-white font-semibold border border-orange-500 rounded-lg">
+          Hola, {{ nombre }}!
+        </span>
+        <a href="{{ url_for('logout') }}" 
+           class="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors">
+          Cerrar Sesión
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <section class="flex-grow flex flex-col items-center justify-center p-8">
+    <div class="bg-black bg-opacity-80 p-10 rounded-xl shadow-2xl text-center max-w-xl w-full border-4 border-orange-500 transform transition duration-500 hover:scale-105">
+      
+      {% if success %}
+        <p class="text-3xl text-green-400 font-extrabold mb-6 animate-pulse">{{ success }}</p>
+      {% endif %}
+
+      <h1 class="text-5xl font-extrabold text-white mb-4">
+        ¡Bienvenido, {{ nombre }}!
+      </h1>
+      <p class="text-2xl text-gray-300 mb-8">
+        Ahora eres parte de la experiencia Angello. Disfruta de beneficios exclusivos y ofertas especiales.
+      </p>
+
+      <a href="{{ url_for('promociones') }}" 
+         class="inline-block py-4 px-10 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-full text-xl shadow-lg transition-all transform hover:shadow-xl hover:-translate-y-1">
+        Ver mis Promociones Ahora
+      </a>
+    </div>
+  </section>
+
+  <!-- El footer se hereda desde base.html -->
+</main>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio Premium - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_premium.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="bg-inicio-premium min-h-screen">
+
+  <!-- NAVBAR (mismo estilo que reserva y cartas) -->
+  <nav class="navbar">
+    <div class="logo flex items-center space-x-2">
+      <a href="{{ url_for('inicio') }}">
+        <img src="{{ url_for('static', filename='img/inicio/logo.png') }}" alt="Logo Angello">
+      </a>
+      <span class="text-xl font-bold">Angello</span>
+    </div>
+
+    <div class="links">
+      <a href="{{ url_for('inicio') }}">Inicio</a>
+      <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+      <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+      <a href="{{ url_for('promociones') }}">Promociones</a>
+      <a href="{{ url_for('reserva') }}">Reservaciones</a>
+      <a href="{{ url_for('delivery') }}">Delivery</a>
+    </div>
+
+    <div class="user-actions">
+      {% if loggedin %}
+      <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+      {% else %}
+      <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="container">
+    {% if success %}
+    <div class="alert-success">
+      <p>{{ success }}</p>
+    </div>
+    {% endif %}
+
+    <div class="hero-content">
+      <div class="hero-image">
+        <img src="{{ url_for('static', filename='img/inicio/inicio.jpg') }}" alt="Pasta Angello">
+      </div>
+
+      <div class="hero-card">
+        <h1>Tu Experiencia Premium Angello</h1>
+        <p class="descripcion">¡Bienvenido de vuelta, {{ nombre }}! Ahora tienes acceso a todo el sitio y a nuestras ofertas exclusivas.</p>
+
+        <h2>Nuestros horarios de atención</h2>
+        <p>Martes a Domingo</p>
+        <p>2:00 pm hasta las 11:00 pm</p>
+
+        <a href="{{ url_for('promociones') }}" class="btn-principal">Ver Promociones</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+{% endblock %}

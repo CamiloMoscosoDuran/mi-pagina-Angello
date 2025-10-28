@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Delivery - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/delivery.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-delivery">
+
+    <!-- NAVBAR igual a RESERVA -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='img/inicio/logo.png') }}" alt="Logo Angello">
+            </a>
+        </div>
+
+        <div class="links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            <a href="{{ url_for('promociones') }}">Promociones</a>
+            <a href="{{ url_for('reserva') }}">Reservaciones</a>
+            <a href="{{ url_for('delivery') }}" class="activo">Delivery</a>
+        </div>
+
+        <div class="user-actions">
+            {% if loggedin %}
+                <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- SECCIÓN PRINCIPAL DELIVERY -->
+    <section class="delivery-container">
+        <h1 class="titulo-delivery">Servicio de Delivery</h1>
+        <p class="descripcion-delivery">
+            Disfruta el sabor de <strong>Angello</strong> desde la comodidad de tu hogar.  
+            Realiza tu pedido por teléfono, WhatsApp o directamente en línea.  
+            ¡Te llevamos nuestros platos con la misma calidad y atención que en el restaurante!
+        </p>
+
+        <div class="opciones-delivery">
+            <div class="card-delivery">
+                <img src="{{ url_for('static', filename='img/delivery/telefono.png') }}" alt="Teléfono">
+                <h3>Pedidos Telefónicos</h3>
+                <p>Llámanos y realiza tu pedido directamente.</p>
+                <p class="contacto">(51) 987 654 321</p>
+            </div>
+
+            <div class="card-delivery">
+                <img src="{{ url_for('static', filename='img/delivery/whatsapp.png') }}" alt="WhatsApp">
+                <h3>WhatsApp</h3>
+                <p>Haz tu pedido rápido por chat.</p>
+                <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="btn-delivery">Enviar mensaje</a>
+            </div>
+
+            <div class="card-delivery">
+                <img src="{{ url_for('static', filename='img/delivery/localizacion.png') }}" alt="Cobertura">
+                <h3>Cobertura</h3>
+                <p>Atendemos en <strong>Cañete, Imperial y San Vicente</strong>.</p>
+                <p class="tiempo">Tiempo promedio: 30-45 minutos.</p>
+            </div>
+        </div>
+
+        <div class="horarios-delivery">
+            <h2>Horarios de Reparto</h2>
+            <p>Martes a Domingo — 2:00 p.m. a 11:00 p.m.</p>
+        </div>
+
+        <div class="boton-carta">
+            <a href="{{ url_for('cartas') }}" class="btn-vercarta">Ver nuestra carta</a>
+        </div>
+    </section>
+
+   
+{% endblock %}

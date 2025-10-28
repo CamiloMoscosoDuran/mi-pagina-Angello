@@ -1,0 +1,287 @@
+/* ------------------------------------------------------------ */
+/* INICIO_PREMIUM.CSS - Estilo coherente con INICIO.CSS */
+/* ------------------------------------------------------------ */
+
+/* FUENTES */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+/* Fondo general */
+.bg-inicio-premium {
+  background-color: #E9E4C7;
+  background-image: url('../img/inicio/fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------ */
+/* NAVBAR (Actualizado para coincidir con INICIO.CSS) */
+/* ------------------------------------------------------------ */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 2rem;
+  backdrop-filter: blur(6px);
+  /* Coherencia */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* Coherencia */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+.navbar .logo img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #ffb86b;
+}
+
+.navbar .links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.8rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.04em;
+  /* Coherencia */
+  transition: all 0.3s ease;
+  /* Coherencia */
+}
+
+.navbar .links a:hover {
+  color: #ffb86b;
+  transform: translateY(-2px);
+  /* Coherencia */
+}
+
+/* ------------------------------------------------------------ */
+/* USER ACTIONS (Clase .auth adaptada a .user-actions/saludo/btn-accent) */
+/* ------------------------------------------------------------ */
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  /* Coherencia con .user-actions */
+}
+
+/* Estilo para el saludo/badge (Adaptado a .saludo de INICIO.CSS) */
+.auth .user-badge {
+  color: #ffb86b;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+/* BOTÓN IGUAL AL DE INICIO.CSS */
+.btn-accent {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+/* Botón de Login (Ahora usa el estilo .btn-accent) */
+.btn-login {
+  /* Estilos base de .btn-accent son aplicados directamente si se usa la clase .btn-accent en el HTML */
+  /* Si se mantiene .btn-login, se aplica el estilo de acento */
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.btn-login:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+
+/* Botón de Logout (Mantiene el color rojo, pero usa el formato del btn-accent) */
+.btn-logout {
+  background: #941b0c;
+  /* Color de logout original */
+  color: white;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: none;
+}
+
+.btn-logout:hover {
+  background: #b42012;
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(180, 32, 18, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* CONTENIDO PRINCIPAL (Sin cambios) */
+/* ------------------------------------------------------------ */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1100px;
+}
+
+.hero-image img {
+  border-radius: 14px;
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 3px solid #ffb86b;
+}
+
+.hero-card {
+  background: rgba(72, 20, 17, 0.9);
+  border: 1px solid rgba(255, 200, 150, 0.15);
+  border-radius: 14px;
+  padding: 2.5rem;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  text-align: center;
+}
+
+.hero-card h1 {
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.hero-card h2 {
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  margin-top: 1.5rem;
+}
+
+.hero-card .descripcion {
+  color: #f1e1c1;
+  margin-bottom: 1rem;
+}
+
+.btn-principal {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.6rem;
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-principal:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 184, 107, 0.4);
+}
+
+/* ALERTA */
+.alert-success {
+  background-color: #166534;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------ */
+/* FOOTER (Actualizado para coincidir con INICIO.CSS) */
+/* ------------------------------------------------------------ */
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 1.2rem 0;
+  /* Coherencia */
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  /* Coherencia */
+  letter-spacing: 0.05em;
+  /* Coherencia */
+}
+
+footer a {
+  color: #ffb86b;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+  /* Coherencia */
+}
+
+/* ------------------------------------------------------------ */
+/* RESPONSIVE (Ajustado el contenedor .auth) */
+/* ------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .links {
+    margin-top: 0.5rem;
+  }
+
+  .auth {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .hero-content {
+    flex-direction: column;
+  }
+}

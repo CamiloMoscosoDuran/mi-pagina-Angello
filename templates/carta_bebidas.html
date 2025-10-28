@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Carta - Bebidas{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="flex-grow bg-main bg-cartas min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-50 text-white shadow-lg sticky top-0 z-50">
+        <a href="{{ url_for('cartas') }}" class="text-orange-500 hover:text-white transition-colors font-bold text-lg">← Volver a la Carta</a>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center p-8 space-y-8">
+        <h1 class="text-5xl font-cinzel text-white mb-4">Bebidas</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg">
+                <img src="{{ url_for('static', filename='img/carta/jugo_natural.png') }}" alt="Jugos Naturales" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Jugos Naturales</h3>
+                    <p>De papaya, piña o fresa. 100% naturales y refrescantes.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg">
+                <img src="{{ url_for('static', filename='img/carta/gaseosa.png') }}" alt="Gaseosas" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Gaseosas</h3>
+                    <p>Variedad de marcas en botella o vaso, bien frías para acompañar tus platos.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg">
+                <img src="{{ url_for('static', filename='img/carta/limonada.png') }}" alt="Limonada" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Limonada</h3>
+                    <p>Preparada al instante con limones frescos, azúcar y mucho hielo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

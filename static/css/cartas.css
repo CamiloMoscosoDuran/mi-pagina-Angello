@@ -1,0 +1,335 @@
+/* ------------------------------------------------------------ */
+/* CARTAS.CSS - Estilo visual coherente con RESERVA.CSS */
+/* ------------------------------------------------------------ */
+
+/* FUENTES PRINCIPALES - Mismo estilo que Reserva */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+/* FONDO GENERAL (idéntico a reserva) */
+.bg-cartas {
+  background-color: #E9E4C7;
+  background-image: url('../img/carta/fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------ */
+/* NAVBAR estilo idéntico al de Reserva */
+/* ------------------------------------------------------------ */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.navbar .logo img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #ffb86b;
+}
+
+.navbar .links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.8rem;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.03em;
+}
+
+.navbar .links a:hover {
+  color: #ffb86b;
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------ */
+/* USER ACTIONS (Copiado de RESERVA.CSS) */
+/* ------------------------------------------------------------ */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.saludo {
+  color: #ffb86b;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+}
+
+/* BOTÓN ACCENT (Usado en el navbar para Login/Logout) */
+.btn-accent {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* ESTILOS DE LAYOUT Y ENCABEZADO (COHERENCIA CON RESERVA) */
+/* ------------------------------------------------------------ */
+.main-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 1rem;
+  width: 100%;
+}
+
+.btn-gold {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+.section-title {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #f1e1c1;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+.content-box {
+  background: rgba(72, 20, 17, 0.92);
+  border: 1px solid rgba(255, 200, 150, 0.1);
+  border-radius: 14px;
+  padding: 4rem 2rem;
+  max-width: 900px;
+  width: 100%;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1s ease;
+  /* Añadido para consistencia */
+}
+
+.content-box::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px solid rgba(212, 179, 124, 0.9);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+/* ------------------------------------------------------------ */
+/* ESTILOS DE TARJETA (CARTA/MENÚ) */
+/* ------------------------------------------------------------ */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: rgba(72, 20, 17, 0.9);
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 200, 150, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  height: auto;
+  display: block;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px solid rgba(212, 179, 124, 0.9);
+  pointer-events: none;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.card-body {
+  background: linear-gradient(90deg, rgba(90, 20, 18, 0.9), rgba(80, 18, 16, 0.9));
+  padding: 1.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f1e1c1;
+  position: relative;
+  z-index: 1;
+}
+
+.card-body h3 {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.08em;
+  color: #ffb86b;
+  font-size: 2rem;
+  line-height: 1;
+  margin: 0;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+.card-img {
+  background: #E9E4C7;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12rem;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.02) contrast(1.05);
+  display: block;
+  border: none;
+  box-shadow: none;
+  border-radius: 14px 14px 0 0;
+}
+
+.card:hover .card-img img {
+  transform: scale(1.03);
+}
+
+/* ------------------------------------------------------------ */
+/* Animaciones */
+/* ------------------------------------------------------------ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------------------------ */
+/* FOOTER */
+/* ------------------------------------------------------------ */
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+footer a {
+  color: #ffb86b;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------ */
+/* RESPONSIVE */
+/* ------------------------------------------------------------ */
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .section-title {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar .links {
+    margin-top: 0.5rem;
+  }
+
+  .card-img img {
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+/* Extras */
+.cta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cta-bar .icon {
+  font-size: 1.1rem;
+}
+
+.cta-bar a {
+  text-decoration: none;
+}
+
+.max-w-6xl {
+  position: relative;
+  z-index: 2;
+}
