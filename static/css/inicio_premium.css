@@ -19,7 +19,7 @@
 }
 
 /* ------------------------------------------------------------ */
-/* NAVBAR (Actualizado para coincidir con INICIO.CSS) */
+/* NAVBAR (Sin cambios) */
 /* ------------------------------------------------------------ */
 .navbar {
   display: flex;
@@ -28,11 +28,9 @@
   background: rgba(0, 0, 0, 0.6);
   padding: 1rem 2rem;
   backdrop-filter: blur(6px);
-  /* Coherencia */
   position: sticky;
   top: 0;
   z-index: 100;
-  /* Coherencia */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   color: white;
 }
@@ -50,28 +48,23 @@
   margin: 0 0.8rem;
   font-family: 'Cinzel', serif;
   letter-spacing: 0.04em;
-  /* Coherencia */
   transition: all 0.3s ease;
-  /* Coherencia */
 }
 
 .navbar .links a:hover {
   color: #ffb86b;
   transform: translateY(-2px);
-  /* Coherencia */
 }
 
 /* ------------------------------------------------------------ */
-/* USER ACTIONS (Clase .auth adaptada a .user-actions/saludo/btn-accent) */
+/* USER ACTIONS (Sin cambios) */
 /* ------------------------------------------------------------ */
 .auth {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  /* Coherencia con .user-actions */
 }
 
-/* Estilo para el saludo/badge (Adaptado a .saludo de INICIO.CSS) */
 .auth .user-badge {
   color: #ffb86b;
   font-family: 'Cinzel', serif;
@@ -82,8 +75,9 @@
   border: none;
 }
 
-/* BOTÓN IGUAL AL DE INICIO.CSS */
-.btn-accent {
+/* BOTÓN ACCENT (Incluye .btn-login y .btn-accent) */
+.btn-accent,
+.btn-login {
   background: linear-gradient(90deg, #ff8c42, #ffb86b);
   color: #4a0b07;
   border: none;
@@ -98,39 +92,16 @@
   cursor: pointer;
 }
 
-.btn-accent:hover {
-  background: linear-gradient(90deg, #ffb86b, #ff8c42);
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
-}
-
-/* Botón de Login (Ahora usa el estilo .btn-accent) */
-.btn-login {
-  /* Estilos base de .btn-accent son aplicados directamente si se usa la clase .btn-accent en el HTML */
-  /* Si se mantiene .btn-login, se aplica el estilo de acento */
-  background: linear-gradient(90deg, #ff8c42, #ffb86b);
-  color: #4a0b07;
-  border: none;
-  padding: 0.7rem 1.4rem;
-  border-radius: 8px;
-  font-weight: 700;
-  font-family: 'Cinzel', serif;
-  font-size: 1.05rem;
-  transition: all 0.3s ease-in-out;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
-}
-
+.btn-accent:hover,
 .btn-login:hover {
   background: linear-gradient(90deg, #ffb86b, #ff8c42);
   transform: scale(1.05);
   box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
 }
 
-
-/* Botón de Logout (Mantiene el color rojo, pero usa el formato del btn-accent) */
+/* Botón de Logout (Mantiene el color rojo) */
 .btn-logout {
   background: #941b0c;
-  /* Color de logout original */
   color: white;
   padding: 0.7rem 1.4rem;
   border-radius: 8px;
@@ -148,7 +119,7 @@
 }
 
 /* ------------------------------------------------------------ */
-/* CONTENIDO PRINCIPAL (Sin cambios) */
+/* CONTENIDO PRINCIPAL Y HERO (Estructura para Carrusel + Tarjeta) */
 /* ------------------------------------------------------------ */
 .container {
   display: flex;
@@ -158,23 +129,19 @@
 }
 
 .hero-content {
+  /* Contenedor Flex para el carrusel y la tarjeta */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  /* Alinea los ítems en la parte superior */
   gap: 3rem;
   max-width: 1100px;
 }
 
-.hero-image img {
-  border-radius: 14px;
-  max-width: 450px;
-  width: 100%;
-  height: auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 3px solid #ffb86b;
-}
-
+/*
+ * ESTILOS DE LA TARJETA PRINCIPAL (lado derecho)
+ */
 .hero-card {
   background: rgba(72, 20, 17, 0.9);
   border: 1px solid rgba(255, 200, 150, 0.15);
@@ -184,6 +151,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   max-width: 500px;
   text-align: center;
+  flex: 1 1 400px;
 }
 
 .hero-card h1 {
@@ -236,19 +204,113 @@
 }
 
 /* ------------------------------------------------------------ */
-/* FOOTER (Actualizado para coincidir con INICIO.CSS) */
+/* ESTILOS DEL CARRUSEL (Tamaño fijo y constante) */
+/* ------------------------------------------------------------ */
+.carrusel-container {
+  /* CLAVE: Bloquea el ancho a 450px y le prohíbe crecer o encoger */
+  flex: 0 0 450px;
+  max-width: 450px;
+  min-width: 280px;
+  position: relative;
+
+  /* CLAVE: Bloquea la altura a un valor fijo para eliminar el salto */
+  height: 420px;
+  min-height: 420px;
+
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 3px solid #ffb86b;
+}
+
+.carrusel-slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.carrusel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Recorta la imagen más ancha para que se ajuste sin distorsión */
+  display: block;
+}
+
+/* Botones de navegación (Flechas) */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  transition: 0.6s ease;
+  user-select: none;
+  background-color: rgba(74, 11, 7, 0.7);
+  border: 1px solid #ffb86b;
+  z-index: 50;
+}
+
+.prev {
+  left: 0;
+  border-radius: 0 14px 14px 0;
+}
+
+.next {
+  right: 0;
+  border-radius: 14px 0 0 14px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(255, 184, 107, 0.9);
+  color: #4a0b07;
+}
+
+/* Puntos indicadores (Dots) */
+.carrusel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 50;
+}
+
+.dot {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  margin: 0 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  border: 1px solid #ffb86b;
+}
+
+.active,
+.dot:hover {
+  background-color: #ffb86b;
+}
+
+
+/* ------------------------------------------------------------ */
+/* FOOTER (Sin cambios) */
 /* ------------------------------------------------------------ */
 footer {
   background: rgba(0, 0, 0, 0.7);
   color: white;
   text-align: center;
   padding: 1.2rem 0;
-  /* Coherencia */
   font-family: 'Cinzel', serif;
   font-size: 0.95rem;
-  /* Coherencia */
   letter-spacing: 0.05em;
-  /* Coherencia */
 }
 
 footer a {
@@ -260,11 +322,10 @@ footer a {
 
 footer a:hover {
   color: #ffffff;
-  /* Coherencia */
 }
 
 /* ------------------------------------------------------------ */
-/* RESPONSIVE (Ajustado el contenedor .auth) */
+/* RESPONSIVE */
 /* ------------------------------------------------------------ */
 @media (max-width: 768px) {
   .navbar {
@@ -283,5 +344,40 @@ footer a:hover {
 
   .hero-content {
     flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* AJUSTE MOVIL: Carrusel - Asegurar altura fija en móvil */
+  .carrusel-container {
+    flex: 1 1 100%;
+    max-width: 100%;
+    /* Elimina el límite de 450px en móvil */
+    height: 280px;
+    min-height: 280px;
+    margin: 0;
+  }
+
+  .hero-card {
+    padding: 1.5rem;
+    margin: 0;
+  }
+
+  .prev,
+  .next {
+    font-size: 18px;
+    padding: 12px;
+  }
+}
+
+/* ------------------------------------------------------------ */
+/* ANIMACIONES (Necesarias para el efecto fade) */
+/* ------------------------------------------------------------ */
+@keyframes fade {
+  from {
+    opacity: .4
+  }
+
+  to {
+    opacity: 1
   }
 }

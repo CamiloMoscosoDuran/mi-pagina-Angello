@@ -47,8 +47,24 @@
     {% endif %}
 
     <div class="hero-content">
-      <div class="hero-image">
-        <img src="{{ url_for('static', filename='img/inicio/inicio.jpg') }}" alt="Pasta Angello">
+
+      <div class="carrusel-container">
+        <div class="carrusel-slide fade">
+          <img src="{{ url_for('static', filename='img/inicio/bebida.jpg') }}" alt="Pasta Angello">
+        </div>
+        <div class="carrusel-slide fade">
+          <img src="{{ url_for('static', filename='img/inicio/pizza.jpg') }}" alt="Pizza Restaurante">
+        </div>
+        <div class="carrusel-slide fade">
+          <img src="{{ url_for('static', filename='img/inicio/pollo.jpg') }}" alt="Ambiente Restaurante">
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div style="text-align:center" class="carrusel-dots">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
       </div>
 
       <div class="hero-card">
@@ -66,4 +82,5 @@
 
 
 </div>
+<script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
 {% endblock %}
