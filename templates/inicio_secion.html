@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% block title %}Iniciar Sesión - Restaurante Angello{% endblock %}
 
@@ -41,20 +41,8 @@
     <!-- 🔸 FORMULARIO DE LOGIN -->
     <div class="login-container">
         <div class="login-box">
-            <h1>Bienvenido de vuelta</h1>
+            <h1>Bienvenido</h1>
             <p>Accede a tu cuenta Angello.</p>
-
-            <!-- Mensajes Flash -->
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="message-box {{ category }}" role="alert">
-                            <p class="font-bold">{{ category.capitalize() }}</p>
-                            <p>{{ message }}</p>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
 
             <form action="{{ url_for('inicio_secion') }}" method="POST">
                 <label for="correo">Correo Electrónico</label>
