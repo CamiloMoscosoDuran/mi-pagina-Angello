@@ -1,0 +1,126 @@
+﻿#chatbot-widget {
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* 💥 SOLUCIÓN CRÍTICA 1: ANULA HERENCIA GLOBAL */
+/* Fuerza el color de texto negro para todos los elementos de texto dentro del chatbot, incluyendo inputs y textareas. */
+#chatbot-widget *, 
+#chatbot-widget input, 
+#chatbot-widget textarea {
+    color: #000000 !important;
+}
+/* ---------------------------------------------------------------------------------- */
+
+#chatbot-toggle {
+    transition: transform 0.2s;
+    box-shadow: 0 2px 8px rgba(255, 140, 0, 0.15);
+}
+
+#chatbot-box {
+    box-shadow: 0 8px 32px rgba(255, 140, 0, 0.15), 0 1.5px 6px rgba(0, 0, 0, 0.08);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1.5px solid #ffb366;
+}
+
+#chatbot-messages {
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.message {
+    margin-bottom: 10px;
+    line-height: 1.4;
+    padding: 8px 14px;
+    border-radius: 12px;
+    max-width: 80%;
+    word-break: break-word;
+    font-size: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.user-message {
+    background: #ffe5d0;
+    text-align: right;
+    margin-left: auto;
+    color: #7c3200; 
+    border: 1px solid #ffd6b3;
+}
+
+.bot-message {
+    background: #fff;
+    text-align: left;
+    margin-right: auto;
+    color: #333; 
+    border: 1px solid #eee;
+}
+
+#chatbot-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.chatbot-step {
+    width: 100%;
+}
+
+/* 💥 SOLUCIÓN CRÍTICA 2: SELECTOR DIRECTO AL INPUT CON ALTA ESPECIFICIDAD */
+/* Aplica estilo a todos los inputs de texto dentro del widget, forzando fondo blanco y texto negro. */
+#chatbot-widget input[type="text"],
+#chatbot-widget input:not([type]), /* Para inputs sin type especificado */
+#chatbot-step-name input,
+#chatbot-step-message input {
+    border: 1.5px solid #ffb366;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 1rem;
+    
+    background: #fff !important; 
+    color: #000000 !important; 
+    
+    transition: border 0.2s;
+}
+
+/* 💥 SOLUCIÓN CRÍTICA 3: PLACEHOLDER visible */
+#chatbot-widget input[type="text"]::placeholder,
+#chatbot-step-name input::placeholder,
+#chatbot-step-message input::placeholder {
+    color: #444444 !important; 
+    opacity: 1 !important; 
+}
+
+/* Estilos para el texto seleccionado */
+#chatbot-widget input[type="text"]::selection,
+#chatbot-step-name input::selection,
+#chatbot-step-message input::selection {
+    background: #7c3200; 
+    color: #ffffff;    
+}
+
+#chatbot-step-name input:focus,
+#chatbot-step-message input:focus,
+#chatbot-widget input[type="text"]:focus {
+    border-color: #7c3200;
+    outline: none;
+}
+
+#chatbot-next,
+#chatbot-step-message button[type="submit"] {
+    background: #7c3200;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 1px 4px rgba(255, 140, 0, 0.08);
+}
+
+#chatbot-next:hover,
+#chatbot-step-message button[type="submit"]:hover {
+    background: #7c3200;
+}
