@@ -1,0 +1,128 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Promociones Exclusivas - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<!-- Usaremos el CSS unificado que generamos -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/promociones.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<!-- Aplicamos el fondo y el estilo de capa oscura del CSS de promociones -->
+<div class="inicio-hero min-h-screen bg-inicio flex flex-col">
+    
+    <!-- 🔸 ENCABEZADO CON LOGO Y NAVEGACIÓN (Usando las clases unificadas de promociones.css) -->
+    <nav class="navbar">
+        <div class="flex items-center space-x-4">
+            <!-- LOGO -->
+            <a href="{{ url_for('inicio') }}" class="flex items-center space-x-2 text-xl font-bold text-white transition-colors">
+                <img src="{{ url_for('static', filename='image/formulario/logo.png') }}" alt="Logo Angello" class="h-10 w-10 rounded-full border-2 border-orange-500">
+                <span>Angello</span>
+            </a>
+            
+            <!-- LINKS DE NAVEGACIÓN -->
+            <!-- La clase 'links' aplica la fuente Cinzel, los colores y el hover definidos en promociones.css -->
+            <div class="links hidden md:flex uppercase tracking-wider">
+                <a href="{{ url_for('inicio') }}">INICIO</a>
+                <a href="{{ url_for('cartas') }}">NUESTRA CARTA</a>
+                <a href="{{ url_for('historia') }}">NUESTRA HISTORIA</a>
+                
+                <!-- Opción activa: Botón de Promociones Resaltado -->
+                <a href="{{ url_for('promociones') }}" class="btn-accent" style="margin: 0 0.8rem;">
+                    🎁 PROMOCIONES
+                </a>
+                
+                <a href="{{ url_for('reserva') }}">RESERVACIONES</a> 
+                <a href="{{ url_for('delivery') }}">DELIVERY</a>
+            </div>
+        </div>
+        
+        <!-- Estado de la Sesión (Cerrar Sesión / Iniciar Sesión) -->
+        <div class="user-actions">
+            {% if loggedin %}
+                <a href="{{ url_for('logout') }}" class="btn-accent">CERRAR SESIÓN</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}" class="btn-accent">INICIAR SESIÓN</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- 🔸 CONTENIDO DE PROMOCIONES (Aplicando la animación del CSS) -->
+    <div class="container mx-auto p-10 text-center">
+        <!-- Títulos usando Cinzel (del CSS) -->
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">🎉 PROMOCIONES EXCLUSIVAS PARA NUESTROS CLIENTES</h1>
+        <p class="text-lg text-white mb-12 max-w-3xl mx-auto">Aprovecha nuestras ofertas especiales solo para miembros registrados. ¡Come delicioso y ahorra con Angello!</p>
+
+        <!-- Tarjetas de Promociones -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- PROMO 1: Super Pollo -->
+            <div class="bg-white rounded-2xl shadow-xl flex flex-col transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+                <div class="bg-red-500 rounded-t-2xl p-6">
+                    <h2 class="text-white text-4xl font-extrabold text-center drop-shadow-md">
+                        Super Pollo
+                    </h2>
+                </div>
+                <div class="p-6 flex-grow flex flex-col text-center">
+                    <h3 class="text-xl font-bold text-red-600 mb-2 uppercase">
+                        <span class="mr-2">🍗</span>
+                        ¡EL REY DE LA BRASA!
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-6 flex-grow">
+                        Nuestro pollo a la leña, marinado por 24 horas. Jugoso, crujiente y lleno de sabor. ¿Podrá la pizza con esto?
+                    </p>
+                    <a href="{{ url_for('delivery') }}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-300 w-full">
+                        ¡QUIERO POLLO!
+                    </a>
+                </div>
+            </div>
+
+            <!-- PROMO 2: Pizza Invencible -->
+            <div class="bg-white rounded-2xl shadow-xl flex flex-col transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+                <div class="bg-blue-500 rounded-t-2xl p-6">
+                    <h2 class="text-white text-4xl font-extrabold text-center drop-shadow-md">
+                        Pizza Invencible
+                    </h2>
+                </div>
+                <div class="p-6 flex-grow flex flex-col text-center">
+                    <h3 class="text-xl font-bold text-blue-600 mb-2 uppercase">
+                        <span class="mr-2">🍕</span>
+                        ¡LA REINA DEL HORNO!
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-6 flex-grow">
+                        Masa artesanal, salsa de tomate casera y los ingredientes más frescos. Un clásico que nunca falla. ¡Elige tu bando!
+                    </p>
+                    <a href="{{ url_for('delivery') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-300 w-full">
+                        ¡DAME PIZZA!
+                    </a>
+                </div>
+            </div>
+
+            <!-- PROMO 3: Puntos de Batalla -->
+            <div class="bg-white rounded-2xl shadow-xl flex flex-col transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+                <div class="bg-green-500 rounded-t-2xl p-6">
+                    <h2 class="text-white text-4xl font-extrabold text-center drop-shadow-md">
+                        Puntos de Batalla
+                    </h2>
+                </div>
+                <div class="p-6 flex-grow flex flex-col text-center">
+                    <h3 class="text-xl font-bold text-green-600 mb-2 uppercase">
+                        <span class="mr-2">🏆</span>
+                        ¡ACUMULA Y GANA!
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-6 flex-grow">
+                        Cada pedido es una victoria. Acumula puntos con cada compra de pollo o pizza y canjéalos por productos gratis. ¡La batalla te recompensa!
+                    </p>
+                    <a href="{{ url_for('cartas') }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-300 w-full">
+                        VER MIS PUNTOS
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-gray-300 mt-12">✨ Todas las promociones son exclusivas para usuarios registrados en Angello.</p>
+    </div>
+</div>
+{% endblock %}
