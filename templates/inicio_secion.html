@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+
+{% block title %}Iniciar Sesión - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<!-- Fuentes y estilos coherentes con todo el sitio -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_secion.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-login">
+
+    <!-- 🔹 NAVBAR (idéntico al de RESERVA) -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+            </a>
+        </div>
+
+        <div class="links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            <a href="{{ url_for('inicio_secion') }}">Promociones</a>
+            <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
+            <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+        </div>
+
+        <div class="user-actions">
+            {% if loggedin %}
+                <span class="saludo">👋 Hola, {{ nombre }}</span>
+                <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- 🔸 FORMULARIO DE LOGIN -->
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Bienvenido</h1>
+            <p>Accede a tu cuenta Angello.</p>
+
+            <form action="{{ url_for('inicio_secion') }}" method="POST">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" name="correo" id="correo" required placeholder="tu.correo@ejemplo.com">
+
+                <label for="contrasena">Contraseña</label>
+                <input type="password" name="contrasena" id="contrasena" required placeholder="••••••••">
+
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+
+            <div class="register-link">
+                <p>¿No tienes cuenta?
+                    <a href="{{ url_for('registro') }}">Regístrate aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔹 FOOTER -->
+    <footer>
+        <p>© 2025 Restaurante Angello - Todos los derechos reservados.</p>
+        <div>
+            <a href="https://wa.me/XXXXXXXXXX" target="_blank">WhatsApp</a> |
+            <a href="https://facebook.com/tupagina" target="_blank">Facebook</a>
+        </div>
+    </footer>
+</div>
+{% endblock %}

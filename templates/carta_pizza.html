@@ -1,0 +1,156 @@
+{% extends "index.html" %}
+
+{% block title %}Carta - Pizzas{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-cartas">
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/carta/logo.png') }}" alt="Logo Angello">
+            </a>
+        </div>
+
+       <div class="links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            {% if loggedin %}
+                <a href="{{ url_for('promociones') }}">Promociones</a>
+                <a href="{{ url_for('reserva') }}">Reservaciones</a>
+                <a href="{{ url_for('delivery') }}">Delivery</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}">Promociones</a>
+                <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
+                <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+            {% endif %}
+
+        </div>
+
+        <div class="user-actions">
+            <a href="{{ url_for('cartas') }}" class="btn-accent">
+                ← Volver a la Carta
+            </a>
+        </div>
+    </div>
+
+    <!-- CONTENIDO CENTRAL -->
+    <div class="main-wrapper">
+        <div class="content-box">
+
+            <h1 class="section-title">Pizzas</h1>
+            <p class="section-subtitle">Deliciosas pizzas artesanales al estilo Angello.</p>
+
+            <div class="card-grid">
+
+                <!-- Margarita -->
+                <div class="card">
+                    <div class="price-tag">24</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pizza/pizza1.jpg') }}" alt="Pizza Margarita">
+                    </div>
+                    <div class="card-body">
+                        <h3>Pizza Margarita</h3>
+                        <p>Clásica pizza con mozzarella y tomate cherry.</p>
+                    </div>
+                </div>
+
+                <!-- Vegetariana -->
+                <div class="card">
+                    <div class="price-tag">25</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pizza/pizza2.jpg') }}" alt="Pizza Vegetariana">
+                    </div>
+                    <div class="card-body">
+                        <h3>Pizza Vegetariana</h3>
+                        <p>Salsa de tomate, verduras frescas, aceitunas y queso mozzarella.</p>
+                    </div>
+                </div>
+
+                <!-- Americana -->
+                <div class="card">
+                    <div class="price-tag">25</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pizza/pizza3.jpg') }}" alt="Pizza Americana">
+                    </div>
+                    <div class="card-body">
+                        <h3>Pizza Americana</h3>
+                        <p>Salsa de tomate, jamón y queso mozzarella.</p>
+                    </div>
+                </div>
+
+                <!-- Hawaiana -->
+                <div class="card">
+                    <div class="price-tag">26</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pizza/pizza3.jpg') }}" alt="Pizza Hawaiana">
+                    </div>
+                    <div class="card-body">
+                        <h3>Pizza Hawaiana</h3>
+                        <p>Salsa de tomate, jamón, queso y piña.</p>
+                    </div>
+                </div>
+
+                <!-- Pepperoni -->
+                <div class="card">
+                    <div class="price-tag">30</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pizza/pizza3.jpg') }}" alt="Pizza Pepperoni">
+                    </div>
+                    <div class="card-body">
+                        <h3>Pizza Pepperoni</h3>
+                        <p>Salsa de tomate, pepperoni y mozzarella.</p>
+                    </div>
+                </div>
+
+                <!-- Angello -->
+                <div class="card">
+                    <div class="price-tag">30</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pizza/pizza3.jpg') }}" alt="Pizza Angello">
+                    </div>
+                    <div class="card-body">
+                        <h3>Pizza Angello</h3>
+                        <p>Jamón, aceitunas, tocino, salame, cabanossi, pimiento y mozzarella. Especial de la casa.</p>
+                    </div>
+                </div>
+
+                <!-- AGREGADOS -->
+                <div class="card card-full">
+                    <div class="card-body">
+                        <h3>Agrégale a tu Pizza</h3>
+                        <p class="section-subtitle small">Puedes escoger dos sabores para tu pizza</p>
+
+                        <div class="extras-grid">
+                            <div><span>Pimiento</span> <span class="inline-price">2</span></div>
+                            <div><span>Champiñones</span> <span class="inline-price">3</span></div>
+                            <div><span>Aceitunas</span> <span class="inline-price">3</span></div>
+                            <div><span>Extra Jamón</span> <span class="inline-price">4</span></div>
+                            <div><span>Tocino</span> <span class="inline-price">4</span></div>
+                            <div><span>Cabanossi</span> <span class="inline-price">4</span></div>
+                            <div><span>Salame</span> <span class="inline-price">4</span></div>
+                            <div><span>Pepperoni</span> <span class="inline-price">5</span></div>
+                            <div><span>Extra Queso</span> <span class="inline-price">6</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Angello. Todos los derechos reservados.
+            <a href="#">Privacidad</a> | <a href="#">Términos</a>
+        </p>
+    </footer>
+
+</div>
+{% endblock %}

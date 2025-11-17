@@ -1,0 +1,265 @@
+/* ======= BATALLA ESTILOS ======= */
+.batalla-container * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+.batalla-container {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.batalla-box {
+    width: 100%;
+    max-width: 1000px;
+    background: rgba(10, 10, 20, 0.9);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 0 30px rgba(0, 150, 255, 0.3);
+    border: 2px solid #0af;
+    position: relative;
+    overflow: hidden;
+}
+
+.batalla-progress {
+    width: 100%;
+    height: 60px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 30px;
+    margin: 20px 0;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.2);
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    transition: width 0.5s;
+}
+
+.progress-pollo {
+    left: 0;
+    background: linear-gradient(to right, #8B4513, #FFD700);
+}
+
+.progress-pizza {
+    right: 0;
+    background: linear-gradient(to left, #B22222, #FFA500);
+}
+
+.batalla-points {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+button.batalla-btn {
+    padding: 12px 30px;
+    margin: 10px;
+    border-radius: 40px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#addPollo { background:#8B4513;color:#FFD700; }
+#addPizza { background:#B22222;color:#FFA500; }
+#resetBtn { background:#333;color:white; }
+
+button.batalla-btn:hover { transform: scale(1.05); }
+
+.winner-text {
+    font-size: 2rem;
+    margin-top: 15px;
+    font-weight: bold;
+}
+/* QUE EL CONTADOR OCUPE EL FONDO */
+.batalla-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('../image/promociones/fondo.jpg'); /* MISMO FONDO DE PROMOCIONES */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* CAJA DEL CONTENIDO */
+.batalla-box {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  color: white;
+  z-index: 5;
+  width: 420px;
+  border: 2px solid white;
+  box-shadow: 0 0 25px cyan;
+  animation: pulseBorder 2s infinite alternate;
+}
+
+/* TITULO CON NEON */
+.titulo-batalla {
+  text-shadow: 0 0 10px #fff, 0 0 20px yellow, 0 0 40px orange;
+}
+
+/* ANIMACIÓN BORDE LATIDO */
+@keyframes pulseBorder {
+  0% { box-shadow: 0 0 10px cyan; }
+  100% { box-shadow: 0 0 35px magenta; }
+}
+
+/* ✅ RAYOS COLORIDOS ANIMADOS */
+.rayo {
+  position: absolute;
+  width: 4px;
+  height: 120vh;
+  top: -10%;
+  animation: rayos 1.3s infinite linear, colores 2s infinite alternate;
+  opacity: 0.8;
+}
+
+.rayo1 { left: 20%; animation-delay: 0s; }
+.rayo2 { left: 40%; animation-delay: 0.2s; }
+.rayo3 { left: 60%; animation-delay: 0.4s; }
+.rayo4 { left: 80%; animation-delay: 0.6s; }
+
+@keyframes rayos {
+  0% { transform: translateY(-100%) rotate(25deg); }
+  100% { transform: translateY(100%) rotate(25deg); }
+}
+
+@keyframes colores {
+  0% { background-color: cyan; }
+  33% { background-color: yellow; }
+  66% { background-color: magenta; }
+  100% { background-color: red; }
+}
+
+/* PROGRESO BARRAS */
+.batalla-progress {
+  display: flex;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.progress-bar {
+  flex: 1;
+  padding: 8px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.progress-pollo {
+  background: red;
+}
+
+.progress-pizza {
+  background: blue;
+}
+
+/* BOTONES */
+.batalla-btn {
+  background: black;
+  border: 2px solid white;
+  padding: 10px 18px;
+  margin: 5px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  box-shadow: 0 0 10px white;
+}
+
+.batalla-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px yellow;
+}
+
+.batalla-btn.reset:hover {
+  box-shadow: 0 0 20px red;
+}
+.batalla-progress {
+  display: flex;
+  gap: 8px;
+  margin: 15px 0;
+  width: 100%;
+}
+
+/* BARRAS BASE */
+.progress-bar {
+  flex: 1;
+  height: 30px;
+  border-radius: 12px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.6);
+  box-shadow: 0 0 15px cyan;
+}
+
+/* COLORES BASE */
+.progress-pollo {
+  background: rgba(255,0,0,0.6);
+  width: 50%;
+}
+
+.progress-pizza {
+  background: rgba(0,150,255,0.6);
+  width: 50%;
+}
+
+/* ⚡ EFECTO DE ONDAS / RAYOS DENTRO */
+.energia {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 120%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.2) 0px,
+    rgba(255,255,255,0.6) 10px,
+    rgba(255,255,255,0.2) 20px
+  );
+  animation: energiaMove 0.8s linear infinite;
+}
+
+@keyframes energiaMove {
+  from { left: -150%; }
+  to   { left: 150%; }
+}
+
+/* brillo pulsante en las barras */
+@keyframes glowBar {
+  0% { box-shadow: 0 0 10px cyan; }
+  50% { box-shadow: 0 0 20px yellow; }
+  100% { box-shadow: 0 0 10px magenta; }
+}
+.progress-bar {
+  animation: glowBar 2s infinite alternate;
+}

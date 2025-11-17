@@ -1,0 +1,88 @@
+{% extends "index.html" %}
+
+{% block title %}Carta - Pastas{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-cartas">
+
+    <!-- NAVBAR (IGUAL QUE PIZZAS) -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/carta/logo.png') }}" alt="Logo Angello">
+            </a>
+        </div>
+
+         <div class="links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            {% if loggedin %}
+                <a href="{{ url_for('promociones') }}">Promociones</a>
+                <a href="{{ url_for('reserva') }}">Reservaciones</a>
+                <a href="{{ url_for('delivery') }}">Delivery</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}">Promociones</a>
+                <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
+                <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+            {% endif %}
+
+        </div>
+
+
+    <div class="user-actions">
+      {% if loggedin %}
+      <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+      {% else %}
+      <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+      {% endif %}
+    </div>
+  </div>
+
+        <div class="user-actions">
+            <a href="{{ url_for('cartas') }}" class="btn-accent">
+                ← Volver a la Carta
+            </a>
+        </div>
+    </div>
+
+
+    <div class="flex flex-col items-center justify-center p-8 space-y-8">
+        <h1 class="text-5xl font-cinzel text-white mb-4">Ensaladas</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">20</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo1.jpg') }}" alt="Ensalada César" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Ensalada César</h3>
+                    <p>Lechuga, pollo, crutones, huevo, aliño césar.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">20</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo2.jpg') }}" alt="Ensalada de Fideos" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Ensalada de Fideos</h3>
+                    <p>Lechuga, pasta tornillo, pollo, queso, tomate, pepinillo, aliño.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">20</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}" alt="Ensalada de Atún" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Ensalada de Atún</h3>
+                    <p>Lechuga, aceitunas verdes, papino, tomate, queso parmesano.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

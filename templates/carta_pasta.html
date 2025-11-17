@@ -1,0 +1,172 @@
+{% extends "index.html" %}
+
+{% block title %}Carta - Pastas{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-cartas">
+
+    <!-- NAVBAR (IGUAL QUE PIZZAS) -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/carta/logo.png') }}" alt="Logo Angello">
+            </a>
+        </div>
+
+         <div class="links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            {% if loggedin %}
+                <a href="{{ url_for('promociones') }}">Promociones</a>
+                <a href="{{ url_for('reserva') }}">Reservaciones</a>
+                <a href="{{ url_for('delivery') }}">Delivery</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}">Promociones</a>
+                <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
+                <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+            {% endif %}
+
+        </div>
+
+    <div class="user-actions">
+      {% if loggedin %}
+      <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+      {% else %}
+      <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+      {% endif %}
+    </div>
+  </div>
+
+        <div class="user-actions">
+            <a href="{{ url_for('cartas') }}" class="btn-accent">
+                ← Volver a la Carta
+            </a>
+        </div>
+    </div>
+
+    <!-- CONTENIDO CENTRAL -->
+    <div class="main-wrapper">
+        <div class="content-box">
+
+            <!-- TÍTULO Y SUBTÍTULO IGUAL QUE PIZZAS -->
+            <h1 class="section-title">Pastas</h1>
+            <p class="section-subtitle">Pastas hechas en casa con salsas artesanales.</p>
+
+            <div class="card-grid">
+
+                <!-- Ravioles -->
+                <div class="card">
+                    <div class="price-tag">25</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pastas/pastas1.jpg') }}" alt="Ravioles">
+                    </div>
+                    <div class="card-body">
+                        <h3>Ravioles</h3>
+                        <p>Rellenos de jamón y queso en salsa de champiñones y tocino.</p>
+
+                        <div class="multi-price">
+                            <span>Jamón/Queso</span><span class="inline-price">25</span>
+                            <span>Carne</span><span class="inline-price">25</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lasagna -->
+                <div class="card">
+                    <div class="price-tag">30</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pastas/pastas2.jpg') }}" alt="Lasagna">
+                    </div>
+                    <div class="card-body">
+                        <h3>Lasagna</h3>
+                        <p>De carne en salsa blanca, jamón, pimiento, champiñones, mozzarella y parmesano.</p>
+                    </div>
+                </div>
+
+                <!-- Pesto -->
+                <div class="card">
+                    <div class="price-tag">23</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pastas/pastas3.jpg') }}" alt="Pesto">
+                    </div>
+                    <div class="card-body">
+                        <h3>Pesto</h3>
+                        <p>Pasta con salsa pesto de albahaca, ajo y queso parmesano.</p>
+                    </div>
+                </div>
+
+                <!-- Boloñesa -->
+                <div class="card">
+                    <div class="price-tag">24</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pastas/pastas1.jpg') }}" alt="Boloñesa">
+                    </div>
+                    <div class="card-body">
+                        <h3>Boloñesa</h3>
+                        <p>Salsa clásica italiana de tomate y carne.</p>
+                    </div>
+                </div>
+
+                <!-- Alfredo -->
+                <div class="card">
+                    <div class="price-tag">24</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pastas/pastas2.jpg') }}" alt="Alfredo">
+                    </div>
+                    <div class="card-body">
+                        <h3>Alfredo</h3>
+                        <p>Cremosa salsa de queso parmesano y mantequilla.</p>
+                    </div>
+                </div>
+
+                <!-- INGREDIENTES / OPCIONES (BLOCK COMPLETO) -->
+                <div class="card card-full">
+                    <div class="card-body">
+                        <h3>Elige Tu Pasta Favorita</h3>
+                        <p class="section-subtitle small">Sigue estos pasos para personalizar tu plato.</p>
+
+                        <div class="extras-grid">
+                            <div><span>PASO 1: Elige tu Salsa</span></div>
+                            <div><span>PASO 2: Escoge tu tipo de Pasta</span></div>
+
+                            <div><span>• Linguini - Fettuccini</span> <span class="inline-price">+2</span></div>
+                            <div><span>• Pappardelle - Reguinette</span></div>
+                            <div><span>• Spaghetti - Canuto</span></div>
+                            <div><span>• Macarrones - Rigatoni</span></div>
+
+                            <div class="mt-4"><span>PASO 3: Agrega Pollo (Opcional)</span> <span class="inline-price">12</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXTRAS -->
+                <div class="card card-full">
+                    <div class="card-body">
+                        <h3>Extras</h3>
+
+                        <div class="extras-grid">
+                            <div><span>Porción de Papas</span> <span class="inline-price">7 - 13</span></div>
+                            <div><span>Porción de Camote</span> <span class="inline-price">7 - 13</span></div>
+                            <div><span>Porción de Arroz</span> <span class="inline-price">8</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Angello. Todos los derechos reservados.
+            <a href="#">Privacidad</a> | <a href="#">Términos</a>
+        </p>
+    </footer>
+
+</div>
+{% endblock %}

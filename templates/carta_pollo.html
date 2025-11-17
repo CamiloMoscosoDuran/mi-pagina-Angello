@@ -1,0 +1,139 @@
+{% extends "index.html" %}
+
+{% block title %}Carta - Pollos{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-cartas">
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/carta/logo.png') }}" alt="Logo Angello">
+            </a>
+        </div>
+
+        <div class="links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            {% if loggedin %}
+                <a href="{{ url_for('promociones') }}">Promociones</a>
+                <a href="{{ url_for('reserva') }}">Reservaciones</a>
+                <a href="{{ url_for('delivery') }}">Delivery</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}">Promociones</a>
+                <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
+                <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+            {% endif %}
+
+        </div>
+
+    <div class="user-actions">
+      {% if loggedin %}
+      <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+      {% else %}
+      <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+      {% endif %}
+    </div>
+  </div>
+
+        <div class="user-actions">
+            <a href="{{ url_for('cartas') }}" class="btn-accent">
+                ← Volver a la Carta
+            </a>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="content-box">
+            <h1 class="section-title">Pollos</h1>
+            <p class="section-subtitle">Nuestros pollos a la leña con el auténtico sabor tradicional.</p>
+
+            <!-- GRID DE TARJETAS -->
+            <div class="card-grid">
+
+                <!-- 1/4 POLLO -->
+                <div class="card">
+                    <div class="price-tag">20</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pollo/pollo1.jpg') }}"
+                             alt="1/4 Pollo a la Leña">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3>1/4 Pollo a la Leña</h3>
+                            <p class="inline-text">
+                                + Papas fritas y ensalada. Jugoso, dorado y con el toque tradicional.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1/2 POLLO -->
+                <div class="card">
+                    <div class="price-tag">40</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pollo/pollo2.jpg') }}"
+                             alt="1/2 Pollo a la Leña">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3>1/2 Pollo a la Leña</h3>
+                            <p>
+                                + Papas fritas y ensalada. El mejor sabor ahumado en su punto exacto.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1 POLLO -->
+                <div class="card">
+                    <div class="price-tag">75</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}"
+                             alt="1 Pollo a la Leña">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3>1 Pollo a la Leña</h3>
+                            <p>
+                                + Papas fritas y ensalada. Ideal para compartir momentos especiales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROMO FAMILIAR -->
+                <div class="card">
+                    <div class="price-tag">100</div>
+                    <div class="card-img">
+                        <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}"
+                             alt="Promo Familiar">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Promo Familiar</h3>
+                            <p>
+                                1 Pollo + Papas + Ensalada + Arroz + Camote Frito + Gaseosa 1.5L. Perfecto para la familia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Angello. Todos los derechos reservados.
+            <a href="#">Privacidad</a> | <a href="#">Términos</a>
+        </p>
+    </footer>
+</div>
+{% endblock %}

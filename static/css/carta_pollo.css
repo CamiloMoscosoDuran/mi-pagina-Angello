@@ -1,0 +1,96 @@
+/* NAVBAR IGUAL A TODAS LAS SECCIONES */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.navbar .links a {
+    margin: 0 12px;
+    color: white;
+    font-weight: 500;
+}
+
+.navbar .links .activo {
+    color: #ffdd73;
+    font-weight: 700;
+}
+
+
+/* TITULO */
+.titulo-carta {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 48px;
+    color: #f4f4f4;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
+
+/* GRID */
+.productos-grid {
+    width: 90%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 35px;
+}
+
+/* CARD */
+.producto-card {
+    background: #1c1c1c;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.5);
+}
+
+.img-pollo {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.producto-nombre {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.producto-precio {
+    font-size: 20px;
+    color: #ffdd73;
+    margin-bottom: 10px;
+}
+
+/* BOTONES */
+.btn-agregar {
+    margin-top: 10px;
+    background: #ffdd73;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-ver-carrito {
+    background: #ffdd73;
+    padding: 12px 30px;
+    font-size: 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.ver-carrito-container {
+    text-align: center;
+    margin-top: 40px;
+}
