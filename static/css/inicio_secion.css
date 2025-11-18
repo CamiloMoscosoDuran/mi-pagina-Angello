@@ -1,14 +1,14 @@
-/* ------------------------------------------------------------ */
-/* INICIO_SECION.CSS - Estilo coherente con RESERVA y DELIVERY */
+﻿/* ------------------------------------------------------------ */
+/* INICIO_SECION.CSS - Estilo coherente con diseño responsivo */
 /* ------------------------------------------------------------ */
 
-/* Fuentes principales */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Open+Sans:wght@400;500&display=swap');
+/* IMPORTAR NAVBAR RESPONSIVO COMÚN */
+@import url('./navbar-responsive.css');
 
 /* Fondo general */
 .bg-login {
   background-color: #E9E4C7;
-  background-image: url('../img/inicio/fondo.png');
+  background-image: url('../image/inicio/fondo.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -16,87 +16,6 @@
   position: relative;
   min-height: 100vh;
   font-family: 'Open Sans', sans-serif;
-}
-
-/* ------------------------------------------------------------ */
-/* NAVBAR */
-/* ------------------------------------------------------------ */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
-  color: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  animation: fadeInDown 1s ease;
-}
-
-.navbar .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.navbar .logo img {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  border: 2px solid #ffb86b;
-}
-
-.navbar .logo span {
-  font-family: 'Cinzel', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffb86b;
-}
-
-.navbar .links a {
-  color: white;
-  text-decoration: none;
-  margin: 0 0.8rem;
-  transition: all 0.3s ease;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.03em;
-}
-
-.navbar .links a:hover {
-  color: #ffb86b;
-  transform: translateY(-2px);
-}
-
-.user-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.user-actions .saludo {
-  color: #ffb86b;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-}
-
-.user-actions .btn-accent {
-  background: linear-gradient(90deg, #ff8c42, #ffb86b);
-  color: #4a0b07;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  font-family: 'Cinzel', serif;
-  transition: all 0.3s ease;
-}
-
-.user-actions .btn-accent:hover {
-  background: linear-gradient(90deg, #ffb86b, #ff8c42);
-  transform: scale(1.05);
 }
 
 /* ------------------------------------------------------------ */
@@ -294,3 +213,4 @@ footer a:hover {
     padding: 2rem 1.5rem;
   }
 }
+

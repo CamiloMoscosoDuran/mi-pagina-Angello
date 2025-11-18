@@ -7,6 +7,8 @@ Reserva Confirmada - Restaurante Angello
 {% block extra_head %}
 <!-- Estilos específicos para la página de confirmación -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/reserva_confirmada.css') }}">
+<!-- Reusar estilos y animaciones del login para efectos DOM -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login-animations.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -16,7 +18,7 @@ Reserva Confirmada - Restaurante Angello
     <header class="header navbar">
         <div class="logo">
             <a href="{{ url_for('inicio') }}">
-                <img src="{{ url_for('static', filename='img/carta/logo.png') }}" alt="Logo Angello">
+                <img src="{{ url_for('static', filename='image/carta/logo.png') }}" alt="Logo Angello">
             </a>
         </div>
         <ul>
@@ -31,20 +33,20 @@ Reserva Confirmada - Restaurante Angello
 
     <!-- CONTENEDOR PRINCIPAL -->
     <div class="container">
-        <div class="confirmacion fade-in">
+        <div class="confirmacion fade-in animate-fadeInUp" id="loginBox">
 
             <!-- CHECK ANIMADO -->
-            <div class="checkmark">
+            <div class="checkmark animate-slideInLeft">
                 <div class="checkmark-circle"></div>
                 <div class="checkmark-stem"></div>
                 <div class="checkmark-kick"></div>
             </div>
 
-            <h2>¡Reserva Confirmada!</h2>
-            <p>Gracias por elegir Restaurante Angello. Tu mesa ha sido reservada con éxito.</p>
+            <h1 class="animate-slideInRight">¡Reserva Confirmada!</h1>
+            <p class="animate-fadeIn">Gracias por elegir Restaurante Angello. Tu mesa ha sido reservada con éxito.</p>
 
             <!-- DETALLES DE LA RESERVA -->
-            <div class="detalles">
+            <div class="detalles animate-slideInRight">
                 <p><strong>Nombre:</strong> {{ nombre }}</p>
                 <p><strong>Fecha:</strong> {{ fecha }}</p>
                 <p><strong>Hora:</strong> {{ hora }}</p>
@@ -55,9 +57,11 @@ Reserva Confirmada - Restaurante Angello
             </div>
 
             <!-- BOTÓN VOLVER -->
-            <a href="{{ url_for('inicio') }}" class="btn-volver">Volver al Inicio</a>
+            <a href="{{ url_for('inicio') }}" class="btn-volver animate-bounceIn">Volver al Inicio</a>
 
         </div>
     </div>
 </div>
+<!-- Scripts para animaciones DOM (reusar lógica del login) -->
+<script src="{{ url_for('static', filename='js/login-animations.js') }}"></script>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "index.html" %}
+﻿{% extends "index.html" %}
 
 {% block title %}Nuestra Historia - Restaurante Angello{% endblock %}
 
@@ -13,16 +13,23 @@
     <nav class="navbar">
         <div class="logo">
             <a href="{{ url_for('inicio') }}">
-                <img src="{{ url_for('static', filename='img/historia/logo.png') }}" alt="Logo Angello">
+                <img src="{{ url_for('static', filename='image/historia/logo.png') }}" alt="Logo Angello">
             </a>
         </div>
         <div class="links">
             <a href="{{ url_for('inicio') }}">Inicio</a>
             <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
             <a href="{{ url_for('historia') }}">Nuestra Historia</a>
-            <a href="{{ url_for('inicio_secion') }}">Promociones</a>
-            <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
-            <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+            {% if loggedin %}
+                <a href="{{ url_for('promociones') }}">Promociones</a>
+                <a href="{{ url_for('reserva') }}">Reservaciones</a>
+                <a href="{{ url_for('delivery') }}">Delivery</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}">Promociones</a>
+                <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
+                <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+            {% endif %}
+
         </div>
 
         <div class="user-actions">
@@ -51,8 +58,8 @@
                 </p>
             </div>
             <div class="historia-imagenes">
-                <img src="{{ url_for('static', filename='img/historia/pizza.png') }}" alt="Pizza artesanal">
-                <img src="{{ url_for('static', filename='img/historia/pollo.png') }}" alt="Pollo a la leña">
+                <img src="{{ url_for('static', filename='image/historia/pizza.png') }}" alt="Pizza artesanal">
+                <img src="{{ url_for('static', filename='image/historia/pollo.png') }}" alt="Pollo a la leña">
             </div>
         </div>
     </section>
@@ -68,3 +75,4 @@
 
 </div>
 {% endblock %}
+

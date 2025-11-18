@@ -1,166 +1,171 @@
 /* ------------------------------------------------------------ */
-/* PROMOCIONES.CSS - Estilo visual coherente con el diseño premium */
+/* PROMOCIONES.CSS - Encabezado idéntico al de CARTAS.CSS */
 /* ------------------------------------------------------------ */
 
-/* Fuentes - Importadas para usar Cinzel en títulos y Open Sans para cuerpo */
+/* FUENTES PRINCIPALES */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
 
-/* Estilo para el fondo del hero section */
+/* ------------------------------------------------------------ */
+/* FONDO PRINCIPAL */
+/* ------------------------------------------------------------ */
 .bg-inicio {
-    /* Asegúrate de que esta ruta de imagen sea correcta en tu proyecto */
-    background-image: url('../img/promociones/fondo.png'); 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; 
-    font-family: 'Open Sans', sans-serif; /* Fuente base para el cuerpo */
-}
-
-/* Estilo base para el contenedor principal para asegurar el contraste */
-.inicio-hero {
-    /* Capa oscura para que el texto y los elementos destaquen sobre el fondo */
-    background-color: rgba(0, 0, 0, 0.65); /* Más oscuro para contraste premium */
-    min-height: 100vh;
+  background-color: #E9E4C7;
+  background-image: url('../image/Vs/vs.mp4');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ------------------------------------------------------------ */
-/* NAVBAR (Ajuste de Espaciado) */
+/* NAVBAR (idéntico al de cartas.css) */
 /* ------------------------------------------------------------ */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
-    color: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* Ajuste del tamaño del Logo para que sea más sutil */
-.navbar .flex img {
-    height: 38px;
-    width: 38px;
-    border-width: 1px;
-}
-.navbar .flex span {
-    font-size: 1.1rem;
-    font-weight: 700;
+/* Logo idéntico */
+.navbar .logo img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #ffb86b;
 }
 
+/* Enlaces idénticos */
 .navbar .links a {
-    color: white;
-    text-decoration: none;
-    margin: 0 1.2rem; 
-    transition: all 0.3s ease;
-    font-family: 'Cinzel', serif; 
-    letter-spacing: 0.08em;
-    font-weight: 600;
-    font-size: 0.9rem; 
+  color: white;
+  text-decoration: none;
+  margin: 0 0.8rem;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.03em;
+  font-size: 1rem;
 }
 
 .navbar .links a:hover {
-    color: #ffb86b; /* Dorado de Angello */
-    transform: translateY(-2px);
+  color: #ffb86b;
+  transform: translateY(-2px);
 }
 
 /* ------------------------------------------------------------ */
-/* USER ACTIONS */
+/* USER ACTIONS (idéntico al de cartas.css) */
 /* ------------------------------------------------------------ */
 .user-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem; 
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .saludo {
-    color: #ffb86b; 
-    font-family: 'Cinzel', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-right: 0.5rem; 
+  color: #ffb86b;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
 }
 
-/* BOTÓN ACCENT (Ajuste de Tamaño) */
+/* Botón dorado igual */
 .btn-accent {
-    background: linear-gradient(90deg, #ff8c42, #ffb86b);
-    color: #4a0b07; 
-    border: none;
-    padding: 0.5rem 1rem; 
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 700;
-    font-family: 'Cinzel', serif;
-    font-size: 0.95rem; 
-    transition: all 0.3s ease-in-out;
-    text-shadow: 0 1px 2px rgba(255,255,255,0.3);
-    cursor: pointer;
-    white-space: nowrap; 
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
 }
 
 .btn-accent:hover {
-    background: linear-gradient(90deg, #ffb86b, #ff8c42);
-    transform: scale(1.05);
-    box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
 }
 
 /* ------------------------------------------------------------ */
-/* CONTENIDO Y TÍTULOS */
+/* CONTENIDO */
 /* ------------------------------------------------------------ */
+.inicio-hero {
+  background-color: rgba(0, 0, 0, 0.65);
+  min-height: 100vh;
+}
+
 h1, h2 {
-    font-family: 'Cinzel', serif;
+  font-family: 'Cinzel', serif;
 }
 
-/* Estilos para las tarjetas de promoción (complementa a Tailwind) */
+/* Tarjetas hover */
 .grid > div {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .grid > div:hover {
-    /* La clase 'transform' y 'hover:-translate-y-2' de Tailwind gestiona la elevación, */
-    /* pero mantenemos la sombra aquí para un efecto más pronunciado */
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+              0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+/* ------------------------------------------------------------ */
+/* FOOTER (opcional, igual que cartas si lo usas) */
+/* ------------------------------------------------------------ */
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+footer a {
+  color: #ffb86b;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
 }
 
 /* ------------------------------------------------------------ */
 /* RESPONSIVE */
 /* ------------------------------------------------------------ */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-        padding: 0.5rem 1rem;
-    }
+@media (max-width: 767px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .navbar .links {
-        margin-top: 0.5rem;
-        display: flex !important; /* Para sobreescribir 'hidden' de Tailwind */
-        flex-direction: column;
-        width: 100%;
-        gap: 0;
-    }
+  .navbar .links {
+    margin-top: 0.5rem;
+  }
 
-    .navbar .links a {
-        padding: 0.5rem 0;
-        margin: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .user-actions {
-        margin-top: 0.5rem;
-        flex-direction: column;
-        width: 100%;
-    }
+  .user-actions {
+    margin-top: 0.5rem;
+    flex-direction: column;
+  }
 
-    .btn-accent {
-        width: 100%;
-        margin: 0.5rem 0 !important;
-    }
-    
-    .saludo {
-        padding-bottom: 0.5rem;
-    }
+  .btn-accent {
+    width: 100%;
+  }
 }

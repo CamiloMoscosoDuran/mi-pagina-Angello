@@ -1,195 +1,219 @@
-// static/js/menu.js
-// Lógica para convertir el bloque de acciones del nav en un menú móvil
+﻿// static/js/menu.js
+// Lógica mejorada para el menú responsivo con diseño optimizado
 
 document.addEventListener('DOMContentLoaded', function() {
     function initResponsiveNav() {
-        const NAV_BREAKPOINT = 768; // px
-        const navs = document.querySelectorAll('nav');
+        const MOBILE_BREAKPOINT = 768; // px
+        const TABLET_BREAKPOINT = 1024; // px
+        const navs = document.querySelectorAll('nav.navbar');
+
+        // Limpiar elementos duplicados existentes antes de crear nuevos
+        navs.forEach(nav => {
+            const existingToggles = nav.querySelectorAll('.nav-toggle');
+            const existingMenus = nav.querySelectorAll('.nav-mobile-menu');
+            
+            // Remover duplicados (mantener solo el primero si existe)
+            if (existingToggles.length > 1) {
+                for (let i = 1; i < existingToggles.length; i++) {
+                    existingToggles[i].remove();
+                }
+            }
+            
+            if (existingMenus.length > 1) {
+                for (let i = 1; i < existingMenus.length; i++) {
+                    existingMenus[i].remove();
+                }
+            }
+        });
 
         navs.forEach(nav => {
-            // tratar de encontrar el bloque de acciones (último div dentro del nav)
-            const actions = nav.querySelector('div:last-of-type');
-            if (!actions) return;
+            const linksContainer = nav.querySelector('.links');
+            const userActions = nav.querySelector('.user-actions');
+            
+            if (!linksContainer) return;
 
+            // Verificar si ya existe un botón hamburguesa para evitar duplicados
+            if (nav.querySelector('.nav-toggle')) {
+                return; // Ya se procesó este navbar
+            }
+
+            // Crear botón hamburguesa
             const toggle = document.createElement('button');
             toggle.setAttribute('aria-expanded', 'false');
-            toggle.setAttribute('aria-label', 'Abrir menu');
-            // clases de utilidad (Tailwind no siempre necesarias aquí)
+            toggle.setAttribute('aria-label', 'Abrir menú');
             toggle.className = 'nav-toggle';
-            // estilos inline garantizan visibilidad inicial y posición
-            Object.assign(toggle.style, {
-                background: 'transparent',
-                border: '2px solid rgba(255,255,255,0.08)',
-                padding: '6px 8px',
-                display: 'none',
-                position: 'absolute',
-                top: '8px',
-                right: '12px',
-                zIndex: 9999,
-                color: 'white',
-                cursor: 'pointer'
-            });
-            toggle.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+            toggle.innerHTML = `
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
 
-            // asegurar que el nav tenga position:relative para que toggle absoluto funcione
-            if (getComputedStyle(nav).position === 'static') {
-                nav.style.position = 'relative';
+            // Insertar el botón antes de las acciones de usuario
+            if (userActions) {
+                nav.insertBefore(toggle, userActions);
+            } else {
+                nav.appendChild(toggle);
             }
 
-            // insertar justo antes del bloque de acciones
-            nav.insertBefore(toggle, actions);
-
-            // crear contenedor del menu movil (donde moveremos nodos reales)
-            const menuContainer = document.createElement('div');
-            menuContainer.className = 'nav-mobile-menu';
-            Object.assign(menuContainer.style, {
-                display: 'none',
-                position: 'absolute',
-                top: (nav.offsetHeight + 8) + 'px',
-                right: '12px',
-                background: 'rgba(0,0,0,0.9)',
-                padding: '8px',
-                borderRadius: '8px',
-                zIndex: 9998,
-                minWidth: '140px'
-            });
-
-            // insert menuContainer in nav
-            nav.appendChild(menuContainer);
-
-            // candidate elements to move: children of actions (right block) then last children of left block
-            const leftBlock = nav.querySelector('div:first-of-type');
-            const rightBlock = actions;
-
-            // map to remember original parent and nextSibling for restoration
-            const originalPos = new Map();
-
-            function getMoveCandidates() {
-                const rightChildren = Array.from(rightBlock.children).filter(el => el.tagName === 'A' || el.tagName === 'BUTTON');
-                const leftChildren = leftBlock ? Array.from(leftBlock.children).filter(el => el.tagName === 'A' || el.tagName === 'BUTTON') : [];
-                // order: last of rightChildren first, then last of leftChildren
-                return rightChildren.slice().reverse().concat(leftChildren.slice().reverse());
+            // Crear contenedor del menú móvil
+            const existingMobileMenu = nav.querySelector('.nav-mobile-menu');
+            let mobileMenu;
+            
+            if (existingMobileMenu) {
+                mobileMenu = existingMobileMenu;
+            } else {
+                mobileMenu = document.createElement('div');
+                mobileMenu.className = 'nav-mobile-menu';
+                mobileMenu.style.display = 'none';
+                nav.appendChild(mobileMenu);
             }
 
-            function measureVisibleWidth() {
-                // measure sum width of logo + visible nav items (excluding those already moved to menuContainer)
-                const logo = nav.querySelector('a img') ? nav.querySelector('a img').parentElement : null;
-                let w = 0;
-                if (logo) w += logo.getBoundingClientRect().width + 12;
-                // include children in left and right blocks that are still in nav
-                const items = Array.from(nav.querySelectorAll('a, button')).filter(el => nav.contains(el) && !menuContainer.contains(el));
-                items.forEach(it => {
-                    // skip the logo anchor
-                    if (it.querySelector && it.querySelector('img')) return;
-                    const r = it.getBoundingClientRect();
-                    w += r.width + 12; // small gap
-                });
-                return w;
-            }
-
-            function moveToMenu(el) {
-                if (!originalPos.has(el)) {
-                    originalPos.set(el, { parent: el.parentElement, nextSibling: el.nextSibling });
+            // Función para mover elementos al menú móvil
+            function populateMobileMenu() {
+                // Limpiar menú móvil
+                mobileMenu.innerHTML = '';
+                
+                // Obtener todos los enlaces del navbar principal
+                const allLinks = linksContainer.querySelectorAll('a');
+                const userActionElements = userActions ? userActions.querySelectorAll('a, button, .saludo') : [];
+                
+                // En móvil: mover TODOS los enlaces al menú
+                // En tablet/desktop: mover solo los que no tienen clase 'main-link'
+                const windowWidth = window.innerWidth;
+                
+                if (windowWidth <= MOBILE_BREAKPOINT) {
+                    // Móvil: agregar todos los enlaces
+                    allLinks.forEach(link => {
+                        const menuItem = link.cloneNode(true);
+                        menuItem.style.display = 'block';
+                        mobileMenu.appendChild(menuItem);
+                    });
+                    
+                    // Agregar separador si hay acciones de usuario
+                    if (userActionElements.length > 0) {
+                        const separator = document.createElement('div');
+                        separator.style.borderTop = '1px solid rgba(255, 184, 107, 0.3)';
+                        separator.style.margin = '0.5rem 0';
+                        mobileMenu.appendChild(separator);
+                        
+                        // Agregar acciones de usuario
+                        userActionElements.forEach(element => {
+                            const menuItem = element.cloneNode(true);
+                            menuItem.style.display = 'block';
+                            mobileMenu.appendChild(menuItem);
+                        });
+                    }
+                } else if (windowWidth <= TABLET_BREAKPOINT) {
+                    // Tablet/Desktop: solo agregar enlaces que no son principales
+                    allLinks.forEach(link => {
+                        if (!link.classList.contains('main-link')) {
+                            const menuItem = link.cloneNode(true);
+                            menuItem.style.display = 'block';
+                            mobileMenu.appendChild(menuItem);
+                        }
+                    });
                 }
-                menuContainer.appendChild(el);
-                // ensure menu item styling
-                el.style.display = 'block';
-                el.style.padding = '6px 8px';
-                el.style.color = 'white';
-                el.style.textDecoration = 'none';
             }
 
-            function moveBack(el) {
-                const info = originalPos.get(el);
-                if (!info) return;
-                if (info.nextSibling && info.parent.contains(info.nextSibling)) {
-                    info.parent.insertBefore(el, info.nextSibling);
-                } else {
-                    info.parent.appendChild(el);
-                }
-                // remove inline menu styles we added
-                el.style.display = '';
-                el.style.padding = '';
-                el.style.color = '';
-                el.style.textDecoration = '';
-                originalPos.delete(el);
-            }
-
-            // En pantallas pequeñas mostramos toggle y transferimos enlaces según ancho
-            function setMobileState(isMobile) {
-                const NAV_RESERVE = 24; // padding reserve
-                if (isMobile) {
+            // Función para actualizar la visibilidad de elementos
+            function updateNavVisibility() {
+                const windowWidth = window.innerWidth;
+                
+                if (windowWidth <= MOBILE_BREAKPOINT) {
+                    // Móvil: ocultar enlaces principales y acciones de usuario, mostrar toggle
+                    linksContainer.style.display = 'none';
+                    if (userActions) userActions.style.display = 'none';
                     toggle.style.display = 'block';
-                    // keep menu hidden by default; toggle will open it
-                    menuContainer.style.display = 'none';
-                    toggle.setAttribute('aria-expanded', 'false');
-                    // compute available width for nav items
-                    const navWidth = nav.clientWidth;
-                    const logo = nav.querySelector('a img') ? nav.querySelector('a img').parentElement : null;
-                    const logoW = logo ? logo.getBoundingClientRect().width + 12 : 0;
-                    const available = navWidth - logoW - NAV_RESERVE - 60; // 60 for toggle and breathing room
-
-                    // move items while visible width exceeds available
-                    let visible = measureVisibleWidth();
-                    const candidates = getMoveCandidates();
-                    let i = 0;
-                    while (visible > available && i < candidates.length) {
-                        const el = candidates[i];
-                        // if element is still in nav (not yet moved), move it
-                        if (nav.contains(el) && !menuContainer.contains(el)) {
-                            visible -= (el.getBoundingClientRect().width + 12);
-                            moveToMenu(el);
+                    
+                    // Ocultar texto del logo en móvil
+                    const logoText = nav.querySelector('.logo span');
+                    if (logoText) logoText.style.display = 'none';
+                    
+                } else if (windowWidth <= TABLET_BREAKPOINT) {
+                    // Tablet/Desktop: mostrar algunos enlaces principales, ocultar otros
+                    linksContainer.style.display = 'flex';
+                    if (userActions) userActions.style.display = 'flex';
+                    toggle.style.display = 'block';
+                    
+                    // Mostrar texto del logo
+                    const logoText = nav.querySelector('.logo span');
+                    if (logoText) logoText.style.display = 'inline';
+                    
+                    // Ocultar enlaces que no son principales
+                    const allLinks = linksContainer.querySelectorAll('a');
+                    allLinks.forEach(link => {
+                        if (link.classList.contains('main-link')) {
+                            link.style.display = 'block';
+                        } else {
+                            link.style.display = 'none';
                         }
-                        i++;
-                    }
-
-                    // try to move back items from menu to nav if space allows (in order they were moved)
-                    let movedBack = true;
-                    while (movedBack) {
-                        movedBack = false;
-                        const nextToRestore = menuContainer.firstElementChild;
-                        if (!nextToRestore) break;
-                        const wnext = nextToRestore.getBoundingClientRect().width + 12;
-                        visible = measureVisibleWidth();
-                        if (visible + wnext <= available) {
-                            moveBack(nextToRestore);
-                            movedBack = true;
-                        }
-                    }
+                    });
+                    
                 } else {
-                    // restaurar todo: mover todos los hijos del menuContainer a sus posiciones originales
-                    Array.from(menuContainer.children).forEach(ch => moveBack(ch));
-                    menuContainer.style.display = 'none';
+                    // Desktop grande: mostrar todo, ocultar toggle
+                    linksContainer.style.display = 'flex';
+                    if (userActions) userActions.style.display = 'flex';
                     toggle.style.display = 'none';
-                    toggle.setAttribute('aria-expanded', 'false');
+                    mobileMenu.style.display = 'none';
+                    
+                    // Mostrar todos los enlaces
+                    const allLinks = linksContainer.querySelectorAll('a');
+                    allLinks.forEach(link => {
+                        link.style.display = 'block';
+                    });
+                    
+                    // Mostrar texto del logo
+                    const logoText = nav.querySelector('.logo span');
+                    if (logoText) logoText.style.display = 'inline';
                 }
-                // ajustar top del menuContainer por si cambió el nav height
-                menuContainer.style.top = (nav.offsetHeight + 8) + 'px';
+                
+                populateMobileMenu();
+                
+                // Actualizar posición del menú móvil
+                const rect = nav.getBoundingClientRect();
+                mobileMenu.style.top = `${nav.offsetHeight + 8}px`;
             }
 
-            toggle.addEventListener('click', function() {
-                const opened = toggle.getAttribute('aria-expanded') === 'true';
-                if (opened) {
-                    // cerrar menu
-                    menuContainer.style.display = 'none';
+            // Event listener para el botón toggle
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+                
+                if (isOpen) {
+                    mobileMenu.style.display = 'none';
                     toggle.setAttribute('aria-expanded', 'false');
                 } else {
-                    // abrir menu
-                    menuContainer.style.display = 'block';
+                    mobileMenu.style.display = 'block';
                     toggle.setAttribute('aria-expanded', 'true');
                 }
             });
 
-            function onResize() {
-                setMobileState(window.innerWidth < NAV_BREAKPOINT);
-                // ajustar top del menuContainer por si cambió el nav height
-                menuContainer.style.top = (nav.offsetHeight + 8) + 'px';
-            }
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (!nav.contains(e.target)) {
+                    mobileMenu.style.display = 'none';
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+            });
 
-            window.addEventListener('resize', onResize);
-            onResize();
+            // Event listener para resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    mobileMenu.style.display = 'none';
+                    toggle.setAttribute('aria-expanded', 'false');
+                    updateNavVisibility();
+                }, 100);
+            });
+
+            // Inicializar
+            updateNavVisibility();
         });
     }
 
     initResponsiveNav();
 });
+

@@ -1,4 +1,4 @@
-/* static/css/index.css - backgrounds específicos para cada página */
+﻿/* static/css/index.css - backgrounds específicos para cada página */
 
 :root{
     --bg-overlay-default: rgba(0,0,0,0.15);
@@ -31,24 +31,25 @@
 
 /* Clase para la imagen de fondo de la página de cartas */
 .bg-cartas {
-    background-image: url('../img/fondo_cartas.jpg');
+    background-image: url('../image/fondo_cartas.jpg');
 }
 
 /* Clase para la imagen de fondo de la página de historia */
 .bg-historia {
-    background-image: url('../img/fondo_historia.jpg');
+    background-image: url('../image/fondo_historia.jpg');
 }
 
 /* Clase para la imagen de fondo del formulario/suscripción */
 .bg-formulario {
-    background-image: url('../img/fondo_formulario.jpg');
+    background-image: url('../image/fondo_formulario.jpg');
 }
 
  /* Clase para la imagen de fondo de la confirmación de suscripción */
 .bg-confirmacion {
-    background-image: url('../img/fondo_confirmacion.jpg');
+    background-image: url('../image/fondo_confirmacion.jpg');
 }
 
 /* Utilidades para asegurar correcto apilado del contenido sobre el fondo */
 .bg-main > * { position: relative; z-index: 1; }
 .bg-main img { display:block; }
+

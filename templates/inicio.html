@@ -1,4 +1,4 @@
-{% extends "index.html" %}
+﻿{% extends "index.html" %}
 
 {% block title %}Inicio - Restaurante Angello{% endblock %}
 
@@ -12,13 +12,14 @@
     <nav class="navbar">
         <div class="logo">
             <a href="{{ url_for('inicio') }}">
-                <img src="{{ url_for('static', filename='img/inicio/logo.png') }}" alt="Logo Angello">
+                <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
             </a>
+            <span>Angello</span>
         </div>
 
         <div class="links">
-            <a href="{{ url_for('inicio') }}">Inicio</a>
-            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('inicio') }}" class="main-link">Inicio</a>
+            <a href="{{ url_for('cartas') }}" class="main-link">Nuestra Carta</a>
             <a href="{{ url_for('historia') }}">Nuestra Historia</a>
             <a href="{{ url_for('inicio_secion') }}">Promociones</a>
             <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
@@ -27,7 +28,6 @@
 
         <div class="user-actions">
             {% if loggedin %}
-                <span class="saludo">👋 Hola, {{ nombre }}</span>
                 <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
             {% else %}
                 <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
@@ -40,13 +40,13 @@
             
             <div class="carrusel-container">
                 <div class="carrusel-slide fade">
-                    <img src="{{ url_for('static', filename='img/inicio/bebida.jpg') }}" alt="Pasta Angello">
+                    <img src="{{ url_for('static', filename='image/inicio/bebida.jpg') }}" alt="Pasta Angello">
                 </div>
                 <div class="carrusel-slide fade">
-                    <img src="{{ url_for('static', filename='img/inicio/pizza.jpg') }}" alt="Pizza Restaurante">
+                    <img src="{{ url_for('static', filename='image/inicio/pizza.jpg') }}" alt="Pizza Restaurante">
                 </div>
                 <div class="carrusel-slide fade">
-                    <img src="{{ url_for('static', filename='img/inicio/pollo.jpg') }}" alt="Ambiente Restaurante">
+                    <img src="{{ url_for('static', filename='image/inicio/pollo.jpg') }}" alt="Ambiente Restaurante">
                 </div>
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>

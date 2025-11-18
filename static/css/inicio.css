@@ -1,14 +1,14 @@
-/* ------------------------------------------------------------ */
-/* INICIO.CSS - Estilo visual coherente con INICIO_SECION.CSS */
+﻿/* ------------------------------------------------------------ */
+/* INICIO.CSS - Estilo visual coherente con diseño responsivo */
 /* ------------------------------------------------------------ */
 
-/* FUENTES */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Open+Sans:wght@400;500&display=swap');
+/* IMPORTAR NAVBAR RESPONSIVO COMÚN */
+@import url('./navbar-responsive.css');
 
 /* FONDO GENERAL */
 .bg-inicio {
     background-color: #E9E4C7;
-    background-image: url('../img/inicio/fondo.png');
+    background-image: url('../image/inicio/fondo.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -19,44 +19,7 @@
 }
 
 /* ------------------------------------------------------------ */
-/* NAVBAR */
-/* ------------------------------------------------------------ */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 1rem 2rem;
-    backdrop-filter: blur(6px);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.logo img {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: 2px solid #ffb86b;
-}
-
-.links a {
-    color: white;
-    text-decoration: none;
-    margin: 0 0.8rem;
-    font-family: 'Cinzel', serif;
-    letter-spacing: 0.04em;
-    transition: all 0.3s ease;
-}
-
-.links a:hover {
-    color: #ffb86b;
-    transform: translateY(-2px);
-}
-
-/* ------------------------------------------------------------ */
-/* USER ACTIONS */
+/* USER ACTIONS ESPECÍFICAS DE ESTA PÁGINA */
 /* ------------------------------------------------------------ */
 .user-actions {
     display: flex;
@@ -70,7 +33,7 @@
     font-size: 1rem;
 }
 
-/* BOTÓN IGUAL AL DE INICIO_SECION */
+/* BOTÓN ACCENT (heredado del navbar común, pero con ajustes específicos) */
 .btn-accent {
     background: linear-gradient(90deg, #ff8c42, #ffb86b);
     color: #4a0b07;
@@ -314,18 +277,10 @@ footer a:hover {
 }
 
 /* ------------------------------------------------------------ */
-/* RESPONSIVE */
+/* RESPONSIVE - ESPECÍFICO PARA LA PÁGINA DE INICIO */
 /* ------------------------------------------------------------ */
+
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .links {
-        padding: 0.5rem 0;
-    }
-
     .hero {
         padding: 3rem 1rem;
     }

@@ -9,7 +9,7 @@
 /* Fondo general (idéntico a cartas) */
 .bg-reserva {
   background-color: #E9E4C7;
-  background-image: url('../img/inicio/fondo.png');
+  background-image: url('../image/inicio/fondo.png');
   /* Usar tu imagen específica de reservas */
   background-size: cover;
   background-position: center;
@@ -255,4 +255,32 @@ footer a:hover {
   .form-box {
     padding: 2rem 1.5rem;
   }
+}
+/* --- NUEVO BLOQUE PARA BOTÓN DE MESA --- */
+.mesa-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.btn-mesa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-mesa:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 184, 107, 0.4);
 }

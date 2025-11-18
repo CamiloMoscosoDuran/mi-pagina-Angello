@@ -1,7 +1,7 @@
-/* static/css/formulario.css - estilos específicos para la página de formulario */
+﻿/* static/css/formulario.css - estilos específicos para la página de formulario */
 .bg-formulario {
     /* Agrega el fondo de pantalla */
-    background-image: url('../img/formulario/fondo.png');
+    background-image: url('../image/formulario/fondo.png');
     /* Asegura que el fondo cubra todo el área sin repetirse */
     background-size: cover;
     background-position: center;

@@ -1,4 +1,4 @@
-let slideIndex = 1;
+﻿let slideIndex = 1;
 let slideInterval; // Variable para almacenar el temporizador automático
 
 // 1. Inicialización: Muestra la primera diapositiva y comienza el carrusel automático

@@ -1,55 +1,38 @@
-{% extends "index.html" %}
+﻿{% extends "index.html" %}
 
 {% block title %}Bienvenido, {{ nombre }}{% endblock %}
 
 {% block extra_head %}
-<!-- Estilo específico para esta vista -->
-<style>
-  .bg-welcome {
-    background-image: url("{{ url_for('static', filename='img/suscripcion/background_suscripcion.jpg') }}");
-    background-size: cover;
-    background-position: center;
-  }
-</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bienvenida.css') }}">
 {% endblock %}
 
 {% block content %}
 <main class="flex-grow bg-main bg-welcome min-h-screen flex flex-col">
 
-  <!-- Barra de navegación del usuario registrado -->
-  <nav class="flex justify-between items-center p-4 bg-black bg-opacity-70 text-white shadow-xl sticky top-0 z-50">
-    <div class="flex items-center space-x-4">
-
-      <!-- Logo -->
-      <a href="{{ url_for('inicio') }}" class="flex items-center space-x-2 text-xl font-bold text-orange-400 hover:text-white transition-colors">
-        <img src="{{ url_for('static', filename='img/formulario/logo.png') }}" alt="Logo Angello" class="h-10 w-10 rounded-full border-2 border-orange-500">
-        <span>Angello</span>
+  <!-- Barra de navegación responsiva -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('inicio') }}">
+        <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
       </a>
-
-      <!-- Navegación principal -->
-      <a href="{{ url_for('inicio') }}" class="px-3 py-2 hover:text-orange-500 transition-colors hidden md:block">Inicio</a>
-      <a href="{{ url_for('cartas') }}" class="px-3 py-2 hover:text-orange-500 transition-colors hidden md:block">Nuestra Carta</a>
-      <a href="{{ url_for('historia') }}" class="px-3 py-2 hover:text-orange-500 transition-colors hidden md:block">Nuestra Historia</a>
-
-      <!-- Promociones exclusivas -->
-      <a href="{{ url_for('promociones') }}" 
-         class="px-3 py-2 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-500 transition-colors">
-        🎁 PROMOCIONES EXCLUSIVAS
-      </a>
-
-      <a href="{{ url_for('formulario') }}" class="px-3 py-2 hover:text-orange-500 transition-colors hidden md:block">Delivery / Reservar</a>
+      <span>Angello</span>
     </div>
 
-    <!-- Estado de sesión -->
-    <div class="flex items-center space-x-4">
+    <div class="links">
+      <a href="{{ url_for('inicio') }}" class="main-link">Inicio</a>
+      <a href="{{ url_for('cartas') }}" class="main-link">Nuestra Carta</a>
+      <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+      <a href="{{ url_for('promociones') }}">Promociones</a>
+      <a href="{{ url_for('reserva') }}">Reservaciones</a>
+      <a href="{{ url_for('delivery') }}">Delivery</a>
+    </div>
+
+    <div class="user-actions">
       {% if loggedin %}
-        <span class="px-4 py-2 text-white font-semibold border border-orange-500 rounded-lg">
-          Hola, {{ nombre }}!
-        </span>
-        <a href="{{ url_for('logout') }}" 
-           class="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors">
-          Cerrar Sesión
-        </a>
+        <span class="saludo">👋 Hola, {{ nombre }}</span>
+        <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+      {% else %}
+        <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
       {% endif %}
     </div>
   </nav>
@@ -79,3 +62,4 @@
   <!-- El footer se hereda desde base.html -->
 </main>
 {% endblock %}
+

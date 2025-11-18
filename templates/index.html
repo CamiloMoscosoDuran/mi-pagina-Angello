@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -9,84 +9,92 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar-responsive.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   {% block extra_head %}{% endblock %}
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col" 
+      data-logged-in="{{ session.get('loggedin') | default(false) | tojson }}"
+      data-user-name="{{ session.get('apodo', session.get('nombre', '')) | e }}"
+      data-user-id="{{ session.get('id', '') }}">
 
   <!-- Contenido dinámico -->
   <main id="content" class="flex-grow flex flex-col">
     {% block content %}{% endblock %}
   </main>
 
-  <!-- Chatbot flotante -->
-  <div id="chatbot-widget" class="fixed bottom-6 right-6 z-50">
-    <button id="chatbot-toggle"
-      class="rounded-full shadow-lg bg-orange-600 p-2 flex items-center justify-center border border-gray-300 hover:scale-105 transition">
-      <img src="{{ url_for('static', filename='img/chatbot/robot.jpg') }}" alt="Chatbot" class="w-14 h-14 rounded-full" />
+  <!-- Chatbot flotante mejorado -->
+  <div id="chatbot-container">
+    <button id="chatbot-toggle" class="chat-button">
+      <i class="fas fa-robot"></i>
+      <span class="chat-notification" id="chat-notification">1</span>
     </button>
 
-    <div id="chatbot-box" class="hidden mt-2 w-96 bg-white rounded-xl shadow-xl border border-gray-200">
-      <!-- Encabezado -->
-      <header class="flex items-center justify-between p-4 border-b bg-orange-600 rounded-t-xl">
-        <div class="flex items-center gap-2">
-          <img src="{{ url_for('static', filename='img/chatbot/logo.png') }}" alt="Logo"
-            class="w-8 h-8 rounded-full border-2 border-white" />
-          <span class="font-semibold text-white">AngelloBot</span>
+    <!-- Ventana del chat -->
+    <div id="chat-window" class="chat-hidden">
+      
+      <!-- Header del chat -->
+      <div class="chat-header">
+        <div class="chat-avatar">
+          <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Angello Bot" class="avatar-img">
         </div>
-        <button id="chatbot-close" class="text-white hover:text-gray-200 text-xl font-bold">&times;</button>
-      </header>
-
-      <p class="px-4 pt-2 text-xs text-gray-500">
-        Este chat se graba usando un servicio en la nube.
-      </p>
+        <div class="chat-title">
+          <h3>Asistente Angello</h3>
+          <span class="status-indicator">
+            <i class="fas fa-circle"></i>
+            En línea
+          </span>
+        </div>
+        <div class="chat-controls">
+          <button id="minimize-button" class="control-button" title="Minimizar">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button id="close-button" class="control-button" title="Cerrar">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
 
       <!-- Área de mensajes -->
-      <div id="chatbot-messages" class="p-4 h-64 overflow-y-auto text-sm bg-gray-50 rounded-b"></div>
-
-      <!-- Formulario -->
-      <form id="chatbot-form" class="flex flex-col gap-2 p-4 border-t bg-white">
-        <!-- Paso 1: Nombre -->
-        <div id="chatbot-step-name" class="chatbot-step">
-          <label for="chatbot-input-name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
-          <input 
-            type="text" 
-            id="chatbot-input-name"
-            class="border border-orange-300 rounded-lg px-3 py-2 w-full mb-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            placeholder="Escribe tu nombre..." 
-            autocomplete="off" 
-            required
-          >
-          <button 
-            type="button" 
-            id="chatbot-next"
-            class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg self-end font-semibold transition">
-            Siguiente
-          </button>
+      <div class="chat-messages" id="chat-messages">
+        <div class="typing-indicator" id="typing-indicator" style="display: none;">
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="typing-text">Angello está escribiendo...</span>
         </div>
+      </div>
 
-        <!-- Paso 2: Mensaje -->
-        <div id="chatbot-step-message" class="chatbot-step hidden">
-          <input 
-            type="text" 
-            id="chatbot-input"
-            class="border border-orange-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-orange-500"
-            placeholder="Escribe un mensaje..." 
-            autocomplete="off"
-          >
-          <button 
-            type="submit"
-            class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg self-end font-semibold transition">
-            Enviar
-          </button>
-        </div>
-      </form>
+      <!-- Sugerencias rápidas -->
+      <div class="quick-suggestions" id="quick-suggestions">
+        <!-- Las sugerencias se generarán dinámicamente por JavaScript -->
+      </div>
 
-      <footer class="px-4 pb-2 text-xs text-gray-400 text-center">
-        Creado por AngelloBot
-      </footer>
+      <!-- Input de mensajes -->
+      <div class="chat-input">
+        <button id="attach-btn" class="attach-button" title="Adjuntar">
+          <i class="fas fa-paperclip"></i>
+        </button>
+        <input type="text" id="chat-input-text" placeholder="Escribe tu mensaje..." autocomplete="off">
+        <button id="send-button" class="send-button" title="Enviar">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+
+      <!-- Footer del chat -->
+      <div class="chat-footer">
+        <span class="powered-by">
+          <i class="fas fa-robot"></i>
+          Asistente Virtual Angello
+        </span>
+      </div>
     </div>
   </div>
+
+  <!-- Datos del usuario para JavaScript (movidos a archivo externo) -->
 
   <!-- Footer principal -->
   <footer class="bg-footer-custom text-white py-8 mt-auto">
@@ -149,8 +157,10 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/chatbot-config.js') }}"></script>
   <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
 </body>
 </html>
+

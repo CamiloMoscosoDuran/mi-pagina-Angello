@@ -8,7 +8,7 @@
 /* FONDO GENERAL */
 .bg-delivery {
   background-color: #E9E4C7;
-  background-image: url('../img/inicio/fondo.png');
+  background-image: url('../image/inicio/fondo.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -278,3 +278,26 @@ footer a:hover {
     margin-top: 0.5rem;
   }
 }
+/* Delivery adaptado al estilo general */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
+
+.bg-delivery{
+  background-color:#E9E4C7;
+  background-image: url('../image/historia/fondo.png');
+  background-size:cover;
+  background-position:center;
+  min-height:100vh;
+  font-family:'Open Sans',sans-serif;
+  padding-bottom:60px;
+}
+
+.navbar{
+  display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem;
+  background:rgba(0,0,0,0.6); color:#fff; position:sticky; top:0; z-index:50;
+}
+
+.opciones-delivery{ display:flex; gap:18px; justify-content:center; margin-top:2rem; flex-wrap:wrap; }
+.card-delivery{ background:rgba(72,20,17,0.9); padding:20px; border-radius:12px; width:280px; text-align:center; color:#fff; border:1px solid rgba(255,200,150,0.08); }
+.card-delivery img{ width:78px; height:78px; object-fit:contain; margin-bottom:10px; }
+
+.btn-delivery, .btn-vercarta{ display:inline-block; margin-top:8px; padding:10px 14px; background:linear-gradient(90deg,#ff8c42,#ffb86b); color:#4a0b07; border-radius:8px; text-decoration:none; font-weight:700; }

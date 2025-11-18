@@ -1,15 +1,14 @@
-/* ------------------------------------------------------------ */
-/* INICIO_PREMIUM.CSS - Estilo coherente con INICIO.CSS */
+﻿/* ------------------------------------------------------------ */
+/* INICIO_PREMIUM.CSS - Estilo coherente con diseño responsivo */
 /* ------------------------------------------------------------ */
 
-/* FUENTES */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+/* IMPORTAR NAVBAR RESPONSIVO COMÚN */
+@import url('./navbar-responsive.css');
 
 /* Fondo general */
 .bg-inicio-premium {
   background-color: #E9E4C7;
-  background-image: url('../img/inicio/fondo.png');
+  background-image: url('../image/inicio/fondo.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -19,60 +18,41 @@
 }
 
 /* ------------------------------------------------------------ */
-/* NAVBAR (Sin cambios) */
+/* USER ACTIONS ESPECÍFICAS */
 /* ------------------------------------------------------------ */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 1rem 2rem;
-  backdrop-filter: blur(6px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  color: white;
-}
-
-.navbar .logo img {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  border: 2px solid #ffb86b;
-}
-
-.navbar .links a {
-  color: white;
-  text-decoration: none;
-  margin: 0 0.8rem;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.04em;
-  transition: all 0.3s ease;
-}
-
-.navbar .links a:hover {
-  color: #ffb86b;
-  transform: translateY(-2px);
-}
-
-/* ------------------------------------------------------------ */
-/* USER ACTIONS (Sin cambios) */
-/* ------------------------------------------------------------ */
-.auth {
+.user-actions {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
 
-.auth .user-badge {
+.saludo {
   color: #ffb86b;
   font-family: 'Cinzel', serif;
   font-size: 1rem;
-  font-weight: 700;
-  padding: 0;
-  background-color: transparent;
+  font-weight: 600;
+}
+
+/* BOTÓN ACCENT */
+.btn-accent {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
   border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
 }
 
 /* BOTÓN ACCENT (Incluye .btn-login y .btn-accent) */
@@ -325,23 +305,10 @@ footer a:hover {
 }
 
 /* ------------------------------------------------------------ */
-/* RESPONSIVE */
+/* RESPONSIVE - ESPECÍFICO PARA INICIO PREMIUM */
 /* ------------------------------------------------------------ */
+
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .links {
-    margin-top: 0.5rem;
-  }
-
-  .auth {
-    justify-content: center;
-    margin-top: 0.5rem;
-  }
-
   .hero-content {
     flex-direction: column;
     gap: 1.5rem;
@@ -351,7 +318,6 @@ footer a:hover {
   .carrusel-container {
     flex: 1 1 100%;
     max-width: 100%;
-    /* Elimina el límite de 450px en móvil */
     height: 280px;
     min-height: 280px;
     margin: 0;
